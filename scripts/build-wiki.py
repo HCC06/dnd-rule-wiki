@@ -92,6 +92,8 @@ def build():
                 md_body = re.sub(r'<span\s+class=GramE>[^<]*</span>', '', md_body)
                 # Strip first h1 heading (template already provides title)
                 md_body = re.sub(r'^#\s+.+?\n', '', md_body, count=1)
+                # Ensure blank lines before headings (necessary after HTML tag stripping)
+                md_body = re.sub(r'([^\n])\n(#{1,6}\s)', r'\1\n\n\2', md_body)
                 # Rewrite internal links
                 md_body = re.sub(
                     r'\[([^\]]*)\]\(([^)]+)\)',
