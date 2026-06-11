@@ -74,6 +74,22 @@ def build():
                 fm_ruleset = post.get("ruleset", "")
 
                 md_body = post.content
+                # Clean CHM/Word cruft HTML tags
+                md_body = re.sub(r'<span[^>]*>', '', md_body)
+                md_body = re.sub(r'</span>', '', md_body)
+                md_body = re.sub(r'<div[^>]*>', '', md_body)
+                md_body = re.sub(r'</div>', '', md_body)
+                md_body = re.sub(r'<p[^>]*>', '', md_body)
+                md_body = re.sub(r'</p>', '', md_body)
+                md_body = re.sub(r'<a[^>]*>', '', md_body)
+                md_body = re.sub(r'</a>', '', md_body)
+                md_body = re.sub(r'lang="[^"]*"', '', md_body)
+                md_body = re.sub(r'style="[^"]*"', '', md_body)
+                md_body = re.sub(r'class="[^"]*"', '', md_body)
+                md_body = re.sub(r'<!--.*?-->', '', md_body, flags=re.DOTALL)
+                # Clean MS Word-specific spans
+                md_body = re.sub(r'<o:p></o:p>', '', md_body)
+                md_body = re.sub(r'<span\s+class=GramE>[^<]*</span>', '', md_body)
                 # Strip first h1 heading (template already provides title)
                 md_body = re.sub(r'^#\s+.+?\n', '', md_body, count=1)
                 # Rewrite internal links

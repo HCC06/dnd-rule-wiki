@@ -15,84 +15,246 @@
 机巧奇具在未激活前是一件休眠物件。要激活机巧奇具，你必须用独属该奇具的手持钥匙上紧发条。为上紧发条，你必须消耗一分钟来上发条，上发条期间，你必须每回合执行操作动作。<br />
 一旦上紧发条，机巧奇具将在以下奇具描述中的特定持续时间内保持激活状态。<br />
 <strong>家用型奇具Domestic Wonder（非普通）。</strong>这具双足的奇具被设计用于协助日常家务。它的外形大致模仿了其创造者用作灵感的某个种族。激活的家用型奇具使用<strong>家用型奇具Domestic Wonder</strong> 的数据卡。奇具是你和你盟友的盟友。它在战斗中使用你的先攻，并在你回合结束后立即执行其回合。它遵从于你的口头指令（无需你的任何动作）。如果你不发令，它将执行回避动作并用其移动以远离危险。当家用型奇具的生命值降至为0时，它会被摧毁。</p>
-<div class="stat-block">
-
-##### 家用型奇具Domestic Wonder
-
-<div class="sub-line">
-
-中型构装，无阵营
-
-</div>
-
-|                   |                  |
-|-------------------|------------------|
-| **AC** 9          | **先攻** -1（9） |
-| **HP** 5（1d8+1） |                  |
-| **速度** 30尺     |                  |
-
-|          |     |      |      |     |          |     |      |      |     |          |     |      |      |
-|----------|-----|------|------|-----|----------|-----|------|------|-----|----------|-----|------|------|
-|          |     | 调整 | 豁免 |     |          |     | 调整 | 豁免 |     |          |     | 调整 | 豁免 |
-| **力量** | 13  | +1   | +1   |     | **敏捷** | 8   | -1   | -1   |     | **体质** | 13  | +1   | +1   |
-| **智力** | 3   | -4   | -4   |     | **感知** | 8   | -1   | -1   |     | **魅力** | 1   | -5   | -5   |
-
-|                             |
-|-----------------------------|
-| **免疫** 毒素；力竭，中毒   |
-| **感官** 被动察觉9          |
-| **语言** 理解通用语但不能说 |
-| **CR ** 0 （XP 0；PB+2）    |
-
-###### 特质Traits
-
-**机械坚韧Trait Name。**若伤害将奇具的生命值降至0，它必须进行一次DC为5+所受伤害的体质豁免，除非该伤害为闪电伤害或来自一次重击。若豁免成功，奇具的生命值改为降至1。  
-**上弦操作Wind-Up Operation。**该奇具处于*<u>昏迷*</u>状态，直到另一名生物使用该奇具的专用钥匙花费1分钟为其上紧发条。发条一旦上紧，奇具将持续运作10天，或者直到有生物以一个操作动作，使用其钥匙触碰奇具将其停用。停用后，奇具陷入*<u>昏迷*</u>状态直到它再次被上紧发条。
-
-</div>
-
+<h5 id="domestic-wonder">家用型奇具Domestic Wonder</h5>
+<p>中型构装，无阵营</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AC</strong> 9</td>
+<td><strong>先攻</strong> -1（9）</td>
+</tr>
+<tr>
+<td><strong>HP</strong> 5（1d8+1）</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>速度</strong> 30尺</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>调整</td>
+<td>豁免</td>
+<td></td>
+<td></td>
+<td></td>
+<td>调整</td>
+<td>豁免</td>
+<td></td>
+<td></td>
+<td></td>
+<td>调整</td>
+<td>豁免</td>
+</tr>
+<tr>
+<td><strong>力量</strong></td>
+<td>13</td>
+<td>+1</td>
+<td>+1</td>
+<td></td>
+<td><strong>敏捷</strong></td>
+<td>8</td>
+<td>-1</td>
+<td>-1</td>
+<td></td>
+<td><strong>体质</strong></td>
+<td>13</td>
+<td>+1</td>
+<td>+1</td>
+</tr>
+<tr>
+<td><strong>智力</strong></td>
+<td>3</td>
+<td>-4</td>
+<td>-4</td>
+<td></td>
+<td><strong>感知</strong></td>
+<td>8</td>
+<td>-1</td>
+<td>-1</td>
+<td></td>
+<td><strong>魅力</strong></td>
+<td>1</td>
+<td>-5</td>
+<td>-5</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>免疫</strong> 毒素；力竭，中毒</td>
+</tr>
+<tr>
+<td><strong>感官</strong> 被动察觉9</td>
+</tr>
+<tr>
+<td><strong>语言</strong> 理解通用语但不能说</td>
+</tr>
+<tr>
+<td>**CR ** 0 （XP 0；PB+2）</td>
+</tr>
+</tbody>
+</table>
+<h6 id="traits">特质Traits</h6>
+<p><strong>机械坚韧Trait Name。</strong>若伤害将奇具的生命值降至0，它必须进行一次DC为5+所受伤害的体质豁免，除非该伤害为闪电伤害或来自一次重击。若豁免成功，奇具的生命值改为降至1。<br />
+<strong>上弦操作Wind-Up Operation。</strong>该奇具处于<em><u>昏迷</em></u>状态，直到另一名生物使用该奇具的专用钥匙花费1分钟为其上紧发条。发条一旦上紧，奇具将持续运作10天，或者直到有生物以一个操作动作，使用其钥匙触碰奇具将其停用。停用后，奇具陷入<em><u>昏迷</em></u>状态直到它再次被上紧发条。</p>
 <p><strong>飞空型奇具Flying Wonder（普通）。</strong>一具被激活的飞空型奇具使用<strong><em>飞空型奇具Flying Wonder</em></strong>的数据卡。奇具是你和你盟友的盟友。它在战斗中使用你的先攻，并在你回合结束后立即执行其回合。它遵从于你的口头指令（无需你的任何动作）。如果你不发令，它将执行回避动作并用其移动以远离危险。当飞空型奇具的生命值降至为0时，它会被摧毁。</p>
-<div class="stat-block">
-
-##### 飞空型奇具Flying Wonder
-
-<div class="sub-line">
-
-微型构装，无阵营
-
-</div>
-
-|                       |                   |
-|-----------------------|-------------------|
-| **AC** 12             | **先攻** +2（12） |
-| **HP** 2（1d4）       |                   |
-| **速度** 5尺，飞行0尺 |                   |
-
-|          |     |      |      |     |          |     |      |      |     |          |     |      |      |
-|----------|-----|------|------|-----|----------|-----|------|------|-----|----------|-----|------|------|
-|          |     | 调整 | 豁免 |     |          |     | 调整 | 豁免 |     |          |     | 调整 | 豁免 |
-| **力量** | 2   | -4   | -4   |     | **敏捷** | 15  | +2   | +2   |     | **体质** | 10  | +0   | +0   |
-| **智力** | 3   | -4   | -4   |     | **感知** | 10  | +0   | +0   |     | **魅力** | 1   | -5   | -5   |
-
-|                                   |
-|-----------------------------------|
-| **免疫** 毒素；力竭，中毒         |
-| **感官** 黑暗视觉60尺；被动察觉10 |
-| **语言** 理解通用语但不能说       |
-| **CR ** 0 （XP 0；PB+2）          |
-
-###### 特质Traits
-
-**载重提升Increased Carrying Capacity。**奇具载重提升100磅。  
-**上弦操作Wind-Up Operation。**该奇具处于昏迷状态，直到另一名生物使用该奇具的专用钥匙花费1分钟为其上紧发条。发条一旦上紧，奇具将持续运作10天，或者直到有生物以一个操作动作，使用其钥匙触碰奇具将其停用。停用后，奇具陷入昏迷状态直到它再次被上紧发条。
-
-###### 附赠动作Bonus Actions
-
-**鸣钟Chime。**奇具发出欢快且有节奏的叫声。奇具选择60尺内其可见的一名盟友，目标使用乐器或修补工具进行的属性检定具有优势，持续至奇具的下个回合开始。  
-**冲刺Sprint。**奇具执行疾行动作。
-
-</div>
-
+<h5 id="flying-wonder">飞空型奇具Flying Wonder</h5>
+<p>微型构装，无阵营</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AC</strong> 12</td>
+<td><strong>先攻</strong> +2（12）</td>
+</tr>
+<tr>
+<td><strong>HP</strong> 2（1d4）</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>速度</strong> 5尺，飞行0尺</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>调整</td>
+<td>豁免</td>
+<td></td>
+<td></td>
+<td></td>
+<td>调整</td>
+<td>豁免</td>
+<td></td>
+<td></td>
+<td></td>
+<td>调整</td>
+<td>豁免</td>
+</tr>
+<tr>
+<td><strong>力量</strong></td>
+<td>2</td>
+<td>-4</td>
+<td>-4</td>
+<td></td>
+<td><strong>敏捷</strong></td>
+<td>15</td>
+<td>+2</td>
+<td>+2</td>
+<td></td>
+<td><strong>体质</strong></td>
+<td>10</td>
+<td>+0</td>
+<td>+0</td>
+</tr>
+<tr>
+<td><strong>智力</strong></td>
+<td>3</td>
+<td>-4</td>
+<td>-4</td>
+<td></td>
+<td><strong>感知</strong></td>
+<td>10</td>
+<td>+0</td>
+<td>+0</td>
+<td></td>
+<td><strong>魅力</strong></td>
+<td>1</td>
+<td>-5</td>
+<td>-5</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>免疫</strong> 毒素；力竭，中毒</td>
+</tr>
+<tr>
+<td><strong>感官</strong> 黑暗视觉60尺；被动察觉10</td>
+</tr>
+<tr>
+<td><strong>语言</strong> 理解通用语但不能说</td>
+</tr>
+<tr>
+<td>**CR ** 0 （XP 0；PB+2）</td>
+</tr>
+</tbody>
+</table>
+<h6 id="traits_1">特质Traits</h6>
+<p><strong>载重提升Increased Carrying Capacity。</strong>奇具载重提升100磅。<br />
+<strong>上弦操作Wind-Up Operation。</strong>该奇具处于昏迷状态，直到另一名生物使用该奇具的专用钥匙花费1分钟为其上紧发条。发条一旦上紧，奇具将持续运作10天，或者直到有生物以一个操作动作，使用其钥匙触碰奇具将其停用。停用后，奇具陷入昏迷状态直到它再次被上紧发条。</p>
+<h6 id="bonus-actions">附赠动作Bonus Actions</h6>
+<p><strong>鸣钟Chime。</strong>奇具发出欢快且有节奏的叫声。奇具选择60尺内其可见的一名盟友，目标使用乐器或修补工具进行的属性检定具有优势，持续至奇具的下个回合开始。<br />
+<strong>冲刺Sprint。</strong>奇具执行疾行动作。</p>
 <p><strong>旋翼型奇具Gyrocopter Wonder（珍稀）。</strong>这台马车大小的奇具由黄铜制成，顶部带有螺旋桨。其中部两侧敞开。上紧发条后，旋翼型奇具能保持激活持续8小时。激活期间，旋翼型能作为载具使用，其需要一名飞行员。旋翼型奇具是一个巨型物件，重500磅，具有如下属性：AC 14，HP 50，速度5尺，飞行速度20尺。旋翼型奇具载重至多200磅，超重时将解除激活。<br />
 货仓内部安装了八根灵体绳，乘坐奇具的生物能使用操作动作连接或脱离其中一根绳索。连接绳索的生物可以从旋翼型奇具上滑翔跳下，每下降1尺就能水平移动至多5尺。若生物距离旋翼型奇具距离超过500尺，绳索将立即消失并回到奇具内。</p>
 <p><strong>移动型奇具Mobility Wonder（普通）。</strong>若未激活，移动型奇具形似一个带有绑带的贵客。可以穿在你的背上或是侧腹部，具体取决于你的身体构造。一旦上紧发条，移动型奇具会变成个人移动装置，保持激活持续24小时。<br />
@@ -121,20 +283,17 @@
 <strong>传送Teleportation。</strong>穿戴此王冠期间，你可以施展法术<strong>传送术Teleport</strong>。王冠也可以自愿施展该法术。每次使用王冠施展该法术后，在7天内无法再次施展该法术。<br />
 <strong>随机词条Random Properties。</strong> 该神器具有下列随机词条（见《城主指南》第七章）：</p>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>1项次要增益词条</p>
-</div>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>1项次要减益词条</p>
-</div>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>1项主要减益词条</p>
-</div>
 <p><strong>智能Sentience。</strong>角之王冠是一件中立邪恶的神器，智力为10，感知16，魅力19。它具有120尺听觉及120尺黑暗视觉。<br />
 王冠理解通用语并通过心灵感应与佩戴者交流。<br />
 <strong>个性Personality。</strong>王冠蕴含着米尔寇的本源，其存在的目的就是传播这位神祗的意志——屠戮生者、复活亡者——并在物质位面散播恐惧。王冠会驱使佩戴者尽可能的传播恐惧与毁灭。<br />
@@ -154,25 +313,21 @@
 直到次日黎明之前，此词条不能再次使用。<br />
 <strong>随机词条Random Properties。</strong> 该神器具有下列随机词条（见《城主指南》第七章）：</p>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>1项次要增益词条</p>
-</div>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>1项主要增益词条</p>
-</div>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>1项次要减益词条</p>
-</div>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>1项主要减益词条</p>
-</div>
 <p><strong>摧毁卡林曼农水晶Destroying the Crystal。</strong> 若与其同调的生物施展法术祈愿术Wish并且祈愿摧毁卡林曼农水晶，则卡林曼农水晶被摧毁，除此之外，没有任何事物能伤害它。当卡林曼农水晶被摧毁时，其中的所有巨灵都将被释放。</p>
 <h6 id="orb-of-damara">达玛剌宝珠 Orb of Damara</h6>
 <p><em>奇物，神器（需同调）</em><br />
@@ -184,15 +339,13 @@
 <strong>飞行Flight。</strong> 你获得60尺飞行速度，并且可以悬浮。<br />
 <strong>随机词条Random Properties。</strong>这件神器具有下列随机词条（见城主指南第七章）</p>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>2项次要增益词条</p>
-</div>
 <ul>
-<li><div></li>
+<li></li>
 </ul>
 <p>2项次要减益词条</p>
-</div>
 <p><strong>施法Spellcasting。</strong> 宝珠有6点充能，每日黎明恢复1d4 + 2点已消耗的充能。与宝珠同调时，你可以通过它施展以下表格中的一道法术（法术攻击加值+10，法术豁免DC 18）。施展相应法术所需消耗的充能数如下表所示。</p>
 <table>
 <thead>
