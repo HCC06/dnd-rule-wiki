@@ -7,8 +7,11 @@ from collections import defaultdict
 
 ROOT = Path("/home/hcc/projects/dnd-combat-sim/rulebook-clean")
 BOOKS_DIR = ROOT / "books"
-OUT_DIR = ROOT / "wiki"
+OUT_DIR = ROOT / "docs"
 ASSETS_DIR = OUT_DIR / "assets"
+
+# Deployment base path — set to "/repo-name" for project sites, "" for user sites
+BASE_PATH = os.environ.get("WIKI_BASE_PATH", "/dnd-rule-wiki")
 
 BOOK_LABELS = {
     "玩家手册2024": "📖 玩家手册 2024", "城主指南2024": "📖 城主指南 2024",
@@ -78,16 +81,16 @@ def build():
                 )
                 html_body = markdown.markdown(md_body, extensions=["tables", "fenced_code", "toc"])
 
-                url = "/" + str(out_rel).replace("\\", "/")
+                url = BASE_PATH + "/" + str(out_rel).replace("\\", "/")
                 page = {
                     "title": title, "url": url, "book": book_name,
                     "book_label": book_label, "ruleset": fm_ruleset, "chapter": chapter,
-                    "breadcrumbs": [{"label": book_label, "url": f"/{ruleset}/{book_name}/"}],
+                    "breadcrumbs": [{"label": book_label, "url": f"{BASE_PATH}/{ruleset}/{book_name}/"}],
                 }
                 if chapter:
                     page["breadcrumbs"].append({
                         "label": chapter.split("/")[-1],
-                        "url": f"/{ruleset}/{book_name}/{chapter}/",
+                        "url": f"{BASE_PATH}/{ruleset}/{book_name}/{chapter}/",
                     })
 
                 ch_key = chapter if chapter else "__root__"
@@ -105,8 +108,52 @@ def build():
                 if processed % 500 == 0:
                     print(f"   ... {processed} pages")
 
+    # Generate chapter index pages
+    chapter_count = 0
+    for ruleset, books in sidebar_tree.items():
+        for book_name, book_data in books.items():
+            if book_name.startswith("_"): continue
+            for ch_name, ch_pages in book_data.get("_chapters", {}).items():
+                if ch_name == "__root__": continue
+                # Create index page for this chapter
+                out_dir = OUT_DIR / ruleset / book_name / ch_name
+                out_dir.mkdir(parents=True, exist_ok=True)
+                idx = out_dir / "index.html"
+                display_name = ch_name.split("/")[-1] if "/" in ch_name else ch_name
+                pg_links = "".join(
+                    f'<li><a href="{p["url"]}">{p["name"]}</a></li>'
+                    for p in sorted(ch_pages, key=lambda x: x["name"])
+                )
+                bc = f'<a href="{BASE_PATH}/{ruleset}/{book_name}/">{BOOK_LABELS.get(book_name, book_name)}</a> <span class="sep">›</span> <span class="current">{display_name}</span>'
+                html = f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>{display_name} — D&D Rule Wiki</title><link rel="stylesheet" href="{BASE_PATH}/assets/style.css"></head><body><div class="layout"><aside class="sidebar" id="sidebar"><div class="sidebar-head"><a href="{BASE_PATH}/" class="home-link">🐉 D&D Rule Wiki</a><input type="text" id="search-input" class="search-box" placeholder="搜索规则、法术、怪物…" autocomplete="off"><div id="search-results" class="search-results"></div></div><nav class="tree" id="tree"></nav></aside><main class="content"><nav class="breadcrumbs">{bc}</nav><article class="rule-content"><h1>{display_name}</h1><ul style="font-size:1.1em;line-height:2.2">{pg_links}</ul></article></main></div><script src="{BASE_PATH}/assets/search.js"></script><script src="{BASE_PATH}/assets/sidebar.js"></script></body></html>"""
+                idx.write_text(html, encoding="utf-8")
+                chapter_count += 1
+
+    # Generate book-level index pages
+    for ruleset, books in sidebar_tree.items():
+        for book_name, book_data in books.items():
+            if book_name.startswith("_"): continue
+            out_dir = OUT_DIR / ruleset / book_name
+            out_dir.mkdir(parents=True, exist_ok=True)
+            idx = out_dir / "index.html"
+            book_label = book_data.get("_label", book_name)
+            ch_list = ""
+            for ch_name in sorted(book_data.get("_chapters", {}).keys()):
+                ch_display = ch_name if ch_name != "__root__" else ""
+                ch_url = f"{BASE_PATH}/{ruleset}/{book_name}/{ch_name}/" if ch_name != "__root__" else ""
+                if ch_name == "__root__":
+                    # List root pages directly
+                    for p in book_data["_chapters"]["__root__"]:
+                        ch_list += f'<li><a href="{p["url"]}">{p["name"]}</a></li>\n'
+                else:
+                    display = ch_name.split("/")[-1] if "/" in ch_name else ch_name
+                    ch_list += f'<li><a href="{ch_url}">{display}</a></li>\n'
+            bc = f'<span class="current">{book_label}</span>'
+            html = f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>{book_label} — D&D Rule Wiki</title><link rel="stylesheet" href="{BASE_PATH}/assets/style.css"></head><body><div class="layout"><aside class="sidebar" id="sidebar"><div class="sidebar-head"><a href="{BASE_PATH}/" class="home-link">🐉 D&D Rule Wiki</a><input type="text" id="search-input" class="search-box" placeholder="搜索规则、法术、怪物…" autocomplete="off"><div id="search-results" class="search-results"></div></div><nav class="tree" id="tree"></nav></aside><main class="content"><nav class="breadcrumbs">{bc}</nav><article class="rule-content"><h1>{book_label}</h1><ul style="font-size:1.1em;line-height:2.2">{ch_list}</ul></article></main></div><script src="{BASE_PATH}/assets/search.js"></script><script src="{BASE_PATH}/assets/sidebar.js"></script></body></html>"""
+            idx.write_text(html, encoding="utf-8")
+
     write_assets(sidebar_tree, all_pages)
-    print(f"\n✅ Done! {processed} pages, {len(all_pages)} search entries")
+    print(f"\n✅ Done! {processed} pages, {chapter_count} chapter indexes, {len(all_pages)} search entries")
     print(f"📁 Output: {OUT_DIR}")
 
 def render_page(page, body_html):
@@ -115,7 +162,7 @@ def render_page(page, body_html):
         if i > 0: bc += ' <span class="sep">›</span> '
         bc += f'<a href="{b["url"]}">{b["label"]}</a>'
     bc += f' <span class="sep">›</span> <span class="current">{page["title"]}</span>'
-    return f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>{page['title']} — D&D Rule Wiki</title><link rel="stylesheet" href="/assets/style.css"></head><body><div class="layout"><aside class="sidebar" id="sidebar"><div class="sidebar-head"><a href="/" class="home-link">🐉 D&D Rule Wiki</a><input type="text" id="search-input" class="search-box" placeholder="搜索规则、法术、怪物…" autocomplete="off"><div id="search-results" class="search-results"></div></div><nav class="tree" id="tree"></nav></aside><main class="content"><nav class="breadcrumbs">{bc}</nav><article class="rule-content"><h1>{page['title']}</h1>{body_html}</article><footer class="page-footer"><p>📚 {page['book_label']} · 规则集 {page['ruleset']}</p></footer></main></div><script src="/assets/search.js"></script><script src="/assets/sidebar.js"></script></body></html>"""
+    return f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>{page['title']} — D&D Rule Wiki</title><link rel="stylesheet" href="{BASE_PATH}/assets/style.css"></head><body><div class="layout"><aside class="sidebar" id="sidebar"><div class="sidebar-head"><a href="{BASE_PATH}/" class="home-link">🐉 D&D Rule Wiki</a><input type="text" id="search-input" class="search-box" placeholder="搜索规则、法术、怪物…" autocomplete="off"><div id="search-results" class="search-results"></div></div><nav class="tree" id="tree"></nav></aside><main class="content"><nav class="breadcrumbs">{bc}</nav><article class="rule-content"><h1>{page['title']}</h1>{body_html}</article><footer class="page-footer"><p>📚 {page['book_label']} · 规则集 {page['ruleset']}</p></footer></main></div><script src="{BASE_PATH}/assets/search.js"></script><script src="{BASE_PATH}/assets/sidebar.js"></script></body></html>"""
 
 def write_assets(tree_data, all_pages):
     # CSS
@@ -123,7 +170,7 @@ def write_assets(tree_data, all_pages):
     (ASSETS_DIR / "style.css").write_text(css, encoding="utf-8")
 
     # Search JS
-    search_js = """(async function(){let pages=[];try{const r=await fetch('/search-index.json');pages=await r.json()}catch(e){return}const input=document.getElementById('search-input');const results=document.getElementById('search-results');if(!input||!results)return;function search(query){results.innerHTML='';if(!query||query.length<1){results.classList.remove('active');return}const q=query.toLowerCase();const matched=[];for(const p of pages){const score=(p.title.includes(query)?100:0)+(p.title.toLowerCase().includes(q)?50:0)+(p.book.toLowerCase().includes(q)?10:0);if(score>0)matched.push({...p,score})}matched.sort((a,b)=>b.score-a.score);const top=matched.slice(0,30);if(top.length===0){results.innerHTML='<div class=no-results>没有找到结果</div>'}else{for(const p of top){const a=document.createElement('a');a.href=p.url;a.innerHTML=p.title+' <span class=book-tag>'+p.book+'</span>';results.appendChild(a)}}results.classList.add('active')}input.addEventListener('input',()=>search(input.value.trim()));input.addEventListener('focus',()=>{if(input.value.trim())search(input.value.trim())});document.addEventListener('click',(e)=>{if(!results.contains(e.target)&&e.target!==input)results.classList.remove('active')});input.addEventListener('keydown',(e)=>{if(e.key==='Escape'){results.classList.remove('active');input.blur()}if(e.key==='Enter'){const first=results.querySelector('a');if(first)window.location=first.href}})})()"""
+    search_js = f"""(async function(){{let pages=[];try{{const r=await fetch('{BASE_PATH}/search-index.json');pages=await r.json()}}catch(e){{return}}const input=document.getElementById('search-input');const results=document.getElementById('search-results');if(!input||!results)return;function search(query){{results.innerHTML='';if(!query||query.length<1){{results.classList.remove('active');return}}const q=query.toLowerCase();const matched=[];for(const p of pages){{const score=(p.title.includes(query)?100:0)+(p.title.toLowerCase().includes(q)?50:0)+(p.book.toLowerCase().includes(q)?10:0);if(score>0)matched.push({{...p,score}})}}matched.sort((a,b)=>b.score-a.score);const top=matched.slice(0,30);if(top.length===0){{results.innerHTML='<div class=no-results>没有找到结果</div>'}}else{{for(const p of top){{const a=document.createElement('a');a.href=p.url;a.innerHTML=p.title+' <span class=book-tag>'+p.book+'</span>';results.appendChild(a)}}}}results.classList.add('active')}}input.addEventListener('input',()=>search(input.value.trim()));input.addEventListener('focus',()=>{{if(input.value.trim())search(input.value.trim())}});document.addEventListener('click',(e)=>{{if(!results.contains(e.target)&&e.target!==input)results.classList.remove('active')}});input.addEventListener('keydown',(e)=>{{if(e.key==='Escape'){{results.classList.remove('active');input.blur()}}if(e.key==='Enter'){{const first=results.querySelector('a');if(first)window.location=first.href}}}}}})()"""
     (ASSETS_DIR / "search.js").write_text(search_js, encoding="utf-8")
 
     # Sidebar JS
@@ -159,12 +206,12 @@ def write_assets(tree_data, all_pages):
     for label, info in sorted(book_info.items(), key=lambda x:-x[1]["count"]):
         book_cards += f'<a class="home-card" href="{info["url"]}"><h3>{label}</h3><span class="cnt">{info["count"]} 页</span></a>\n'
 
-    quick = [("⚔️ 战斗规则","/2024-core/玩家手册2024/进行游戏/战斗流程.html"),("✨ 法术详述","/2024-core/玩家手册2024/法术详述/"),("👹 怪物图鉴","/2024-core/怪物图鉴2025/"),("📋 状态列表","/2024-core/玩家手册2024/术语汇编/状态.html"),("🛡️ 职业","/2024-core/玩家手册2024/角色职业/"),("🌿 种族/物种","/2024-core/玩家手册2024/角色起源/种族详述.html"),("⚡ 速查","/quick-reference/速查/")]
+    BP = BASE_PATH
+    quick = [(f"⚔️ 战斗规则",f"{BP}/2024-core/玩家手册2024/进行游戏/战斗流程.html"),(f"✨ 法术详述",f"{BP}/2024-core/玩家手册2024/法术详述/"),(f"👹 怪物图鉴",f"{BP}/2024-core/怪物图鉴2025/"),(f"📋 状态列表",f"{BP}/2024-core/玩家手册2024/术语汇编/状态.html"),(f"🛡️ 职业",f"{BP}/2024-core/玩家手册2024/角色职业/"),(f"🌿 种族/物种",f"{BP}/2024-core/玩家手册2024/角色起源/种族详述.html"),(f"⚡ 速查",f"{BP}/quick-reference/速查/")]
     quick_html = "".join(f'<a class="home-card" href="{u}"><h3>{l}</h3></a>' for l,u in quick)
-
     comp = f"""<div style="margin-top:32px"><h2 style="color:var(--red);border-bottom:2px solid var(--red);padding-bottom:8px">📋 2024 vs 2014 核心变化</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px"><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--red)"><strong>⚡ 突袭</strong>：被突袭不再失去回合，改为先攻劣势</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--red)"><strong>🔪 武器精通</strong>：全新系统，8种精通属性</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--blue)"><strong>🛡️ 至圣斩</strong>：变为法术，每回合一次</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--blue)"><strong>💪 属性值来源</strong>：从种族移至背景</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--gold)"><strong>🎯 巨武/神射</strong>：-5/+10 移除</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--gold)"><strong>✨ 法术反制</strong>：体质豁免，不消耗法术位</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid #0d7c4d"><strong>💚 治疗翻倍</strong>：治疗伤口2d8，治愈真言2d4</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid #0d7c4d"><strong>🧪 药水BA</strong>：所有药水饮用改为附赠动作</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--red)"><strong>📊 力竭线性化</strong>：-2/级d20，-5尺/级速度</div><div style="background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--blue)"><strong>🎓 子职业统一3级</strong>：所有职业统一在3级选择</div></div></div>"""
 
-    homepage = f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>D&D Rule Wiki</title><link rel="stylesheet" href="/assets/style.css"></head><body><div class="layout"><aside class="sidebar" id="sidebar"><div class="sidebar-head"><a href="/" class="home-link">🐉 D&D Rule Wiki</a><input type="text" id="search-input" class="search-box" placeholder="搜索规则、法术、怪物…" autocomplete="off"><div id="search-results" class="search-results"></div></div><nav class="tree" id="tree"></nav></aside><main class="content"><div class="home-hero"><h1>🐉 D&D Rule Wiki</h1><p>龙与地下城规则维基 · {len(all_pages)} 个页面 · 2024 & 2014 规则集</p></div><h2 style="margin-bottom:12px">📚 规则书</h2><div class="home-grid">{book_cards}</div><h2 style="margin:28px 0 12px">⚡ 快速导航</h2><div class="home-grid">{quick_html}</div>{comp}</main></div><script src="/assets/search.js"></script><script src="/assets/sidebar.js"></script></body></html>"""
+    homepage = f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>D&D Rule Wiki</title><link rel="stylesheet" href="{BASE_PATH}/assets/style.css"></head><body><div class="layout"><aside class="sidebar" id="sidebar"><div class="sidebar-head"><a href="{BASE_PATH}/" class="home-link">🐉 D&D Rule Wiki</a><input type="text" id="search-input" class="search-box" placeholder="搜索规则、法术、怪物…" autocomplete="off"><div id="search-results" class="search-results"></div></div><nav class="tree" id="tree"></nav></aside><main class="content"><div class="home-hero"><h1>🐉 D&D Rule Wiki</h1><p>龙与地下城规则维基 · {len(all_pages)} 个页面 · 2024 & 2014 规则集</p></div><h2 style="margin-bottom:12px">📚 规则书</h2><div class="home-grid">{book_cards}</div><h2 style="margin:28px 0 12px">⚡ 快速导航</h2><div class="home-grid">{quick_html}</div>{comp}</main></div><script src="{BASE_PATH}/assets/search.js"></script><script src="{BASE_PATH}/assets/sidebar.js"></script></body></html>"""
     (OUT_DIR / "index.html").write_text(homepage, encoding="utf-8")
 
 if __name__ == "__main__":
