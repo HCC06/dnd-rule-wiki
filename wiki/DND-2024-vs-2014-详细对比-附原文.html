@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D&D 2024 vs 2014 详细对比（附原文）</title>
+<style>
+:root{--bg:#fdfcf9;--card:#fff;--text:#2b2b2b;--muted:#777;--red:#b22222;--blue:#2563eb;--gold:#8b6914;--border:#e5dfd5;--shadow:0 1px 3px rgba(0,0,0,.06);--sidebar-w:250px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:16px}
+.hero{background:linear-gradient(170deg,#1a1a2e,#16213e);color:#f5e6c8;text-align:center;padding:40px 0 32px;position:relative;z-index:10}
+.hero h1{font-size:1.6em;color:#f5c842;letter-spacing:1px}
+.hero p{color:#c8b88a;margin-top:4px;font-size:.88em}
+.layout{display:flex}
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);height:calc(100vh - 112px);position:sticky;top:0;overflow-y:auto;background:#f8f5f0;border-right:1px solid var(--border);padding:20px 16px 40px;font-size:.84em}
+.sidebar h2{font-size:.85em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0;background:#f8f5f0;padding:6px 0;z-index:2}
+.sidebar ol{list-style:none;padding:0}
+.sidebar li{margin-bottom:3px}
+.sidebar a{color:var(--muted);text-decoration:none;display:block;padding:4px 10px;border-radius:4px;transition:all .15s}
+.sidebar a:hover{color:var(--red);background:#fdf0f0}
+.sidebar .sublink{padding-left:22px;font-size:.92em;color:#999}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.main{flex:1;min-width:0;max-width:860px;margin:0 auto;padding:28px 32px 0}
+section{margin:52px 0}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:10px;border-bottom:2px solid var(--red)}
+.sec-head .n{background:var(--red);color:#fff;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1em;font-weight:800;flex-shrink:0}
+.sec-head h2{font-size:1.4em;font-weight:800}
+h3{font-size:1.1em;color:var(--red);margin:28px 0 10px}
+h4{font-size:1em;margin:20px 0 6px;color:var(--gold)}
+.src-group{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.src-card{background:var(--card);border-radius:8px;box-shadow:var(--shadow);overflow:hidden}
+.src-card .hd{padding:6px 14px;font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.src-card.q14 .hd{background:#e8f0fe;color:var(--blue)}
+.src-card.q24 .hd{background:#fde8e8;color:var(--red)}
+.src-card .bd{padding:12px 16px;font-size:.88em}
+.src-card .bd p{margin-bottom:6px}
+.src-card .bd p:last-child{margin-bottom:0}
+.src-card .src{font-size:.75em;color:var(--muted);margin-top:8px;font-style:italic}
+.src-full{background:var(--card);border-radius:8px;box-shadow:var(--shadow);margin:10px 0;overflow:hidden}
+.src-full .hd{padding:6px 14px;font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.src-full.q14 .hd{background:#e8f0fe;color:var(--blue)}
+.src-full.q24 .hd{background:#fde8e8;color:var(--red)}
+.src-full.qnew .hd{background:#d4fceb;color:#0d7c4d}
+.src-full .bd{padding:14px 18px;font-size:.88em}
+.tbl-wrap{overflow-x:auto;margin:14px 0;border-radius:8px;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:.88em}
+th{background:#f5f0e8;padding:9px 14px;text-align:left;font-weight:700;font-size:.8em;color:var(--muted);text-transform:uppercase}
+td{padding:8px 14px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover td{background:#fdfaf5}
+.td14{color:var(--blue);font-weight:600}
+.td24{color:var(--red);font-weight:600}
+.t{display:inline-block;padding:1px 7px;border-radius:3px;font-size:.72em;font-weight:700}
+.t-new{background:#d4fceb;color:#085c31}
+.t-nerf{background:#fde8e8;color:#9b1c1c}
+.t-buff{background:#d4fceb;color:#085c31}
+.mast-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:10px 0}
+.mast-item{background:#f6fef9;border:1px solid #c6e8d6;border-radius:6px;padding:8px 12px;font-size:.85em}
+.mast-item strong{color:#0d7c4d}
+.cls-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:14px 0}
+.cls-card{background:var(--card);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);font-size:.88em;border-top:3px solid var(--gold)}
+.cls-card h4{font-size:.95em;margin:0 0 6px;color:var(--gold)}
+.cls-card p,.cls-card li{margin-bottom:3px}
+.src-inline{background:var(--card);border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:8px 14px;margin:8px 0;font-size:.88em;box-shadow:var(--shadow)}
+.src-inline.b14{border-left-color:var(--blue)}
+.src-inline .lbl{font-size:.72em;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+.hl{background:linear-gradient(180deg,transparent 60%,#fef3c7 60%);padding:0 2px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0 0}
+footer{text-align:center;padding:48px 0 32px;color:var(--muted);font-size:.85em;border-top:1px solid var(--border);margin-top:48px}
+@media(max-width:860px){.layout{flex-direction:column}.sidebar{width:100%;min-width:auto;height:auto;max-height:40vh;position:relative;border-right:none;border-bottom:1px solid var(--border);padding:16px}.sidebar h2{position:static}.sidebar ol{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}.main{padding:16px}.src-group,.cls-grid,.mast-grid{grid-template-columns:1fr}.hero h1{font-size:1.2em}}
+@media print{body{font-size:11px;line-height:1.55}.hero{padding:16px 0 12px;background:#fff;color:#000;border-bottom:2px solid #000}.hero h1{font-size:1.3em;color:#000}.hero p{color:#555}.layout{display:block}.sidebar{display:none}.main{max-width:100%;padding:0}section{margin:24px 0;page-break-inside:avoid}hr{margin:20px 0}.src-card,.src-full,.src-inline,.cls-card,.mast-item{box-shadow:none;border:1px solid #ccc}.src-card.q14 .hd,.src-card.q24 .hd,.src-full.q14 .hd,.src-full.q24 .hd,.src-full.qnew .hd{color:#000}.src-card.q14 .hd{background:#e8e8e8}.src-card.q24 .hd{background:#eee}.hl{background:#ff0}.mast-grid{grid-template-columns:repeat(4,1fr)}.cls-grid{grid-template-columns:repeat(3,1fr)}@page{margin:12mm;size:A4}}
+</style>
+</head>
+<body>
+<div class="hero"><h1>D&D 2024 vs 2014 详细对比报告</h1><p>附规则书原文对照 · 玩家手册2024 + 城主指南2024 + 怪物图鉴2025 vs Legacy Core</p></div>
+<div class="layout">
+<nav class="sidebar"><h2>📑 目录</h2><ol>
+<li><a href="#s1">1. 角色创建与种族/物种</a></li><li><a href="#s1-1" class="sublink">术语 · 属性值来源</a></li><li><a href="#s1-3" class="sublink">背景 · 语言 · 阵营</a></li><li><a href="#s1-6" class="sublink">物种变化 · 创建步骤</a></li>
+<li><a href="#s2">2. 职业</a></li><li><a href="#s2-1" class="sublink">子职业 · 通用变化</a></li><li><a href="#s2-3" class="sublink">各职业详细变化</a></li>
+<li><a href="#s3">3. 战斗规则</a></li><li><a href="#s3-2" class="sublink">武器精通 · 擒拿</a></li><li><a href="#s3-5" class="sublink">突袭 · 力竭 · 激励</a></li>
+<li><a href="#s4">4. 法术与施法</a></li><li><a href="#s4-2" class="sublink">关键法术原文</a></li>
+<li><a href="#s5">5. 专长系统</a></li>
+<li><a href="#s6">6. 状态与条件</a></li>
+<li><a href="#s7">7. 怪物与遭遇设计</a></li>
+<li><a href="#s8">8. 魔法物品与宝藏</a></li>
+<li><a href="#s9">9. 对模拟器的影响</a></li>
+</ol></nav>
+<div class="main">
+
+<section id="s1"><div class="sec-head"><span class="n">1</span><h2>角色创建与种族/物种</h2></div>
+<h3 id="s1-1">1.1 术语变更</h3>
+<p>2014 使用 Race（种族），2024 改为 Species（中文译名不变）。</p>
+<div class="src-inline b14"><div class="lbl">2014 · 玩家手册 · 第 2 章</div>种族</div>
+<div class="src-inline"><div class="lbl">2024 · 玩家手册 · 角色起源</div>物种</div>
+
+<h3>1.2 属性值来源</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>每个<span class="hl">种族</span>都会为角色一项或多项的属性值提供加成。</p><p class="src">books/legacy-core/玩家手册/种族/种族.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p><strong>背景</strong>列出了角色的三项属性值。将其中一项提升2，另一项提升1；或者将三项都分别增加1。这些提升都不能使得属性值超过20。</p><p><strong>种族</strong>只提供：生物类型、体型、速度、特殊特质。无属性值。</p><p class="src">books/2024-core/玩家手册2024/角色起源/起源的构成部分.md</p></div></div>
+</div>
+
+<h3 id="s1-3">1.3 背景变化</h3>
+<div class="tbl-wrap"><table>
+<tr><th>方面</th><th class="td14">2014</th><th class="td24">2024</th></tr>
+<tr><td>属性值</td><td class="td14">无</td><td class="td24">+2/+1 或 +1/+1/+1</td></tr>
+<tr><td>专长</td><td class="td14">不含</td><td class="td24">每项背景必含一项<span class="t t-new">起源专长</span></td></tr>
+<tr><td>背景特性</td><td class="td14">叙事性特性（如侍僧的"信仰的庇护所"）</td><td class="td24">完全移除</td></tr>
+<tr><td>装备</td><td class="td14">固定装备包</td><td class="td24">二选一：主题装备包(A) 或 50GP(B)</td></tr>
+<tr><td>特征</td><td class="td14">特质/理念/牵绊/缺陷表格</td><td class="td24">移除，移至阵营步骤</td></tr>
+</table></div>
+<div class="src-full q14"><div class="hd">2014 · 侍僧背景示例</div><div class="bd"><p>技能熟练：洞悉、宗教。语言：自选两种。装备：圣徽、祈祷书、5支香、祭袍、普通服装、装有15gp的 pouch。特性：信仰的庇护所。</p><p class="src">books/legacy-core/玩家手册/个性与背景/侍僧.md</p></div></div>
+<div class="src-full q24"><div class="hd">2024 · 士兵背景示例</div><div class="bd"><p>属性值：力量、敏捷、体质。专长：凶蛮打手。技能熟练：运动、威吓。工具：一种 gaming set。装备：A（矛、短弓、20支箭、gaming set、医疗包、箭袋、旅行者服装、14GP）或 B（50GP）。</p><p class="src">books/2024-core/玩家手册2024/角色起源/背景/士兵.md</p></div></div>
+<p>2024 背景（16项）vs 2014（13项）：移除平民英雄、公会工匠、化外之民、流浪儿；新增工匠、农民、警卫、向导、商人、抄写员、流浪者。</p>
+
+<h3>1.4 语言系统</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>种族决定起始语言（如矮人：通用语 + 矮人语）。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>种族不再授予语言。所有角色自动获得：通用语 + 2 门标准语言。新增"通用手语"。罕见语言单独列表。</p><p class="src">books/2024-core/玩家手册2024/创建角色/第二步：确定起源.md</p></div></div>
+</div>
+
+<h3>1.5 阵营</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>阵营是核心机制。每个种族条目包含"阵营"特征，描述典型阵营倾向。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>种族条目中移除所有阵营倾向。阵营变为创建角色流程中的独立小步骤（第四步）。明确声明"D&D预设玩家角色不属于邪恶阵营"。2024 新增"阵营与性格"表格（d4 投骰映射性格特征）。</p><p class="src">books/2024-core/玩家手册2024/创建角色/第四步：选择阵营.md</p></div></div>
+</div>
+
+<h3 id="s1-6">1.6 物种具体变化</h3>
+<p><strong>新增核心物种：</strong>歌利亚（Goliath）、阿斯莫（Aasimar）、兽人（Orc）。<strong>移除：</strong>半精灵、半兽人（被纯兽人取代）。</p>
+<div class="tbl-wrap"><table>
+<tr><th>物种</th><th>关键变化</th></tr>
+<tr><td><strong>人类</strong></td><td>总是获得资源丰富（长休后免费英雄激励）+ 多才多艺（1技能）+ 多面手（1起源专长）。可选小体型。</td></tr>
+<tr><td><strong>矮人</strong></td><td>速度 25→30ft。黑暗视觉 60→120ft。石中精妙改为主动能力（BA 60ft 颤动感知，PB/天）。坚韧所有矮人 +1HP/级。移除武器/护甲熟练。合并为单一物种。</td></tr>
+<tr><td><strong>精灵</strong></td><td>血统系统取代亚种（高等/木族/卓尔三选一），每项在 1/3/5 级获得法术。<strong>卓尔日光敏感完全移除。</strong>精灵武器训练移除。敏锐感官改为洞察/察觉/生存三选一。</td></tr>
+<tr><td><strong>龙裔</strong></td><td>吐息武器改为替换一次攻击（非整轮动作），基础伤害 1d10（原 2d6），PB/长休。新增 60ft 黑暗视觉。<strong>5级获得龙族飞行</strong>（BA启动，飞行速度等同步行速度，10分钟，1/长休）。</td></tr>
+<tr><td><strong>提夫林</strong></td><td>地狱传承三选一：深渊（毒素）、冥府（黯蚀）、炼狱（火焰），各有 1/3/5 级法术。可选小体型。</td></tr>
+<tr><td><strong>侏儒</strong></td><td>速度 25→30ft。侏儒的狡黠扩大到<strong>所有</strong>智/感/魅豁免（不再限于魔法效果）。石侏儒改为修复术+魔法伎俩。</td></tr>
+<tr><td><strong>半身人</strong></td><td>速度 25→30ft。天生隐匿成为所有半身人的基础特性（2014 仅轻足半身人）。无亚种。</td></tr>
+</table></div>
+
+<h3>1.7 属性值生成方式</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>三种方法：标准数组（15,14,13,12,10,8）、4d6 取最高三、27 点购点（8 起始）。上限 15，然后加种族加值。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>三种方法相同。上限仍为 15，然后加背景加值。2024 新增"按职业的标准数组推荐表"。明确兼容旧规则。</p><p class="src">books/2024-core/玩家手册2024/创建角色/第三步：确定属性值.md</p></div></div>
+</div>
+
+<h3>1.8 高等级起始装备</h3>
+<div class="src-full qnew"><div class="hd">2024 新增</div><div class="bd"><p>2024 新增"以更高等级开始"的魔法物品表，按等级段定义起始魔法物品数量和稀有度。</p><p class="src">books/2024-core/玩家手册2024/创建角色/以更高等级开始.md</p></div></div>
+<div class="src-full q14"><div class="hd">2014</div><div class="bd"><p>2014 同样有"高于 1 级开始"规则，但无结构化魔法物品表。</p><p class="src">books/legacy-core/玩家手册/创建角色/高于1级.md</p></div></div>
+</section><hr>
+
+<section id="s2"><div class="sec-head"><span class="n">2</span><h2>职业</h2></div>
+<h3 id="s2-1">2.1 子职业统一到第 3 级</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>牧师 1 级选领域；术士 1 级选起源；魔契师 1 级选宗主；法师 2 级选学派；德鲁伊 2 级选结社。其他 7 个职业在 3 级选择。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>所有 12 个职业统一在第 3 级选择子职业。</p></div></div>
+</div>
+<div class="src-inline"><div class="lbl">2024 · 牧师</div>3级：你选择获得一项牧师子职：生命领域，光明领域，诡术领域或战争领域。子职是一种特化，在特定的牧师等级给予你对应的独特能力。</div>
+<div class="src-inline"><div class="lbl">2024 · 术士</div>3级：你选择获得一项术士子职。畸变术法、时械术法、龙族术法和狂野术法。</div>
+<div class="src-inline"><div class="lbl">2024 · 魔契师</div>3级：你选择获得一项魔契师子职：至高妖精宗主，天界宗主，邪魔宗主或旧日支配者宗主。</div>
+
+<h3>2.2 通用变化</h3>
+<ul><li>2014 已知法术职业（术士、吟游诗人、游侠、魔契师）→ 2024 <strong>全部改为准备法术</strong></li><li>所有武术职业（野蛮人、战士、圣武士、游侠、游荡者）在 1 级获得<strong>武器精通</strong></li><li>所有职业在 19 级获得<strong>传奇恩惠专长</strong>（取代 ASI）</li></ul>
+
+<h3 id="s2-3">2.3 各职业详细变化</h3>
+<div class="cls-grid">
+
+<div class="cls-card"><h4>🪓 野蛮人</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 狂暴</div>持续 1 分钟，如果你没有攻击或受到伤害则提前结束</div>
+<div class="src-inline"><div class="lbl">2024 · 狂暴</div>持续至下回合，通过攻击/迫使豁免/使用 BA 维持（最长 10 分钟）。15级永久狂暴（仅昏迷/重甲可结束）。短休恢复 1 次。</div>
+<p style="margin-top:8px"><strong>残忍重击 → 残暴打击</strong></p>
+<div class="src-inline b14"><div class="lbl">2014</div>暴击时额外伤害骰（9级+1颗，13级+2颗，17级+3颗）</div>
+<div class="src-inline"><div class="lbl">2024</div>使用鲁莽攻击时，可放弃单次攻击优势，改为附加 1d10（17级2d10）伤害+控制效果（击退15尺/减速15尺等）</div>
+<p style="margin-top:8px"><strong>新增：</strong>武器精通、原初知识（3级）、本能猛扑（7级）、顶点力/体+4上限25</p>
+</div>
+
+<div class="cls-card"><h4>⚔️ 战士</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 回气</div>1次/短休</div>
+<div class="src-inline"><div class="lbl">2024 · 回气</div>多次使用（2→4次/天），短休恢复1次</div>
+<p style="margin-top:8px"><strong>动作如潮</strong></p>
+<div class="src-inline b14"><div class="lbl">2014</div>额外动作（任意类型）</div>
+<div class="src-inline"><div class="lbl">2024</div>额外动作，但<strong>不包括魔法动作</strong></div>
+<p style="margin-top:8px"><strong>不屈</strong></p>
+<div class="src-inline b14"><div class="lbl">2014</div>重掷豁免，接受新结果</div>
+<div class="src-inline"><div class="lbl">2024</div>重掷豁免，<strong>加战士等级为加值</strong></div>
+<p style="margin-top:8px"><strong>新增：</strong>武器精通 3→6项、战术思维/转移/大师、老练攻击（13级）</p>
+</div>
+
+<div class="cls-card"><h4>🛡️ 圣武士</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 至圣斩</div>第2级起，你使用近战武器攻击命中一个生物时，可以消耗一枚法术位，并对目标造成附加光耀伤害。不限每回合次数。</div>
+<div class="src-inline"><div class="lbl">2024 · 至圣斩</div>至圣斩变为 1 环法术——施法时间：附赠动作，命中后立即执行。2d8 光耀。始终准备，每日免费施放一次。每回合只能消费一个法术位。</div>
+<p style="margin-top:8px"><strong>圣疗：</strong>动作→附赠动作 | <strong>引导神力：</strong>1→2/短休起 | <strong>新增：</strong>武器精通、忠诚信徒、光辉打击</p>
+</div>
+
+<div class="cls-card"><h4>✨ 牧师</h4>
+<p><strong>1级新增 圣职：</strong>守护者（重甲+军用武器）或奇术师（额外戏法+感知用于奥术/宗教）。取代 2014 领域护甲/武器熟练。</p>
+<div class="src-inline b14"><div class="lbl">2014 · 引导神力</div>1次/短休（6级2次，18级3次）</div>
+<div class="src-inline"><div class="lbl">2024 · 引导神力</div>2次/短休起（6级3次，18级4次），短休恢复1次</div>
+<p style="margin-top:8px"><strong>驱散亡灵→灼烧亡灵：</strong>改为感知调整值×d8 光耀伤害（不再基于 CR）</p>
+<p style="margin-top:8px"><strong>神圣干预：</strong>免费施放任意≤5环牧师法术，1/长休。20级可施放<strong>祈愿术</strong></p>
+<p style="margin-top:8px"><strong>祝福打击 7 级统一化：</strong>神圣打击（+1d8光耀/黯蚀）或强力施法（感知加值到戏法伤害）</p>
+</div>
+
+<div class="cls-card"><h4>📖 法师</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 仪式施法</div>已准备法术的仪式施法</div>
+<div class="src-inline"><div class="lbl">2024 · 仪式施法</div>法术书中任意仪式法术均可仪式施法，<strong>无需准备</strong></div>
+<p style="margin-top:8px"><strong>2级新增学者：</strong>一项智力技能专精</p>
+<p style="margin-top:8px"><strong>5级新增记忆法术：</strong>短休期间可替换一个已准备法术</p>
+</div>
+
+<div class="cls-card"><h4>🔥 术士</h4>
+<div class="src-inline"><div class="lbl">2024 新增 · 天生术法</div>1级：附赠动作启动，持续1分钟——豁免 DC+1，术士法术攻击检定优势。2次/长休。</div>
+<div class="src-inline"><div class="lbl">2024 新增 · 术法化身</div>7级：可消耗 2 术法点启动天生术法。天生术法激活时，每个法术可应用<strong>两种超魔法</strong>。</div>
+<p style="margin-top:8px"><strong>术法恢复：</strong>20级顶点→5级特性（短休恢复等级一半的术法点，1/长休）</p>
+<p style="margin-top:8px"><strong>超魔法：</strong>3级→2级获得，提前1级</p>
+<p style="margin-top:8px"><strong>顶点：</strong>奥术神化（天生术法期间每回合一次免术法点超魔法）</p>
+</div>
+
+<div class="cls-card"><h4>🗡️ 游荡者</h4>
+<div class="src-inline"><div class="lbl">2024 新增 · 狡猾打击</div>5级：造成偷袭伤害时可牺牲偷袭骰子换取控制效果——下毒（1d6：中毒1分钟）、绊倒（1d6：豁免否则倒地）、撤离（1d6：移动半速无借机）。11级同时用两种效果。14级新增眩惑/击昏/蒙蔽。</div>
+<p style="margin-top:8px"><strong>可靠才能：</strong>11级→7级（提前4级）</p>
+<p style="margin-top:8px"><strong>心智滑坡：</strong>仅感知豁免→感知+魅力豁免</p>
+<p style="margin-top:8px"><strong>顶点：</strong>失手变命中/失败变20→任意 d20 测试变20</p>
+</div>
+
+<div class="cls-card"><h4>🏹 游侠</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 宿敌</div>选择生物类型，优势于追踪/知识检定</div>
+<div class="src-inline"><div class="lbl">2024 · 宿敌</div>始终准备猎人印记，免费施放次数（2次起→20级6次），13级起无需专注</div>
+<p style="margin-top:8px"><strong>施法：</strong>已知法术→准备法术（长休可更换）</p>
+<p style="margin-top:8px"><strong>移除：</strong>自然探索者、原初感知、无踪步、自然伪装、无踪</p>
+<p style="margin-top:8px"><strong>新增：</strong>灵巧探索者、不知疲倦、自然面纱、无情猎手（13级）、精准猎手（17级）、野性感知（18级）</p>
+<p style="margin-top:8px"><strong>顶点：</strong>猎人标记伤害骰 d6→<strong>d10</strong></p>
+</div>
+
+<div class="cls-card"><h4>🎵 吟游诗人</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 吟游激励</div>持续10分钟；攻击/属性检定/豁免。长休恢复（5级短休）。</div>
+<div class="src-inline"><div class="lbl">2024 · 吟游激励</div>持续<strong>1小时</strong>；可用于任意 d20 测试，<strong>在得知失败后决定使用</strong>。5级起可消费法术位获得一次使用。</div>
+<div class="src-inline b14"><div class="lbl">2014 · 魔法秘密</div>10/14/18级各选2个法术</div>
+<div class="src-inline"><div class="lbl">2024 · 魔法秘密</div>10级起可准备<strong>牧师/德鲁伊/法师全部列表</strong>中的任意法术</div>
+<p style="margin-top:8px"><strong>反迷惑：</strong>动作→反应 | <strong>施法：</strong>已知→准备 | <strong>顶点：</strong>创生之语（强力治愈术+律令死亡双目标）</p>
+</div>
+
+<div class="cls-card"><h4>🌿 德鲁伊</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 荒野变形</div>使用野兽 HP 作为临时 HP 池（完全吸收伤害），2/短休</div>
+<div class="src-inline"><div class="lbl">2024 · 荒野变形</div>获得等于德鲁伊等级的临时 HP；保留自身 HP。使用次数：2→4次（17级），短休恢复1次</div>
+<p style="margin-top:8px"><strong>1级新增原初秩序：</strong>魔法师（额外戏法+感知技能）或守卫者（军用武器+中甲）</p>
+<p style="margin-top:8px"><strong>新增：</strong>荒野伙伴（2级）、荒野复苏（5级：法术位↔变形互换）、元素之怒（7级）</p>
+</div>
+
+<div class="cls-card"><h4>👊 武僧</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 武艺骰</div>起始 d4，结束 d10</div>
+<div class="src-inline"><div class="lbl">2024 · 武艺骰</div>起始 <strong>d6</strong>，结束 <strong>d12</strong></div>
+<div class="src-inline b14"><div class="lbl">2014 · 拨挡飞弹</div>仅对抗远程武器攻击</div>
+<div class="src-inline"><div class="lbl">2024 · 拨挡攻击</div>3级：对抗<strong>所有 BPS 伤害攻击</strong>；13级：对抗<strong>任意伤害类型</strong>。减伤 = 1d10+敏捷+武僧等级</div>
+<p style="margin-top:8px"><strong>专注点（原气）：</strong>任意休整恢复；不凡代谢（2级：开战恢复+治疗）</p>
+<p style="margin-top:8px"><strong>疾风连击：</strong>10级3次 | <strong>坚如磐石/风行步：</strong>基础免费</p>
+<p style="margin-top:8px"><strong>移除：</strong>静心、纯净身体、日月之舌、不老身躯、空灵体 | <strong>顶点：</strong>身心合一（敏/感+4，上限25）</p>
+</div>
+
+<div class="cls-card"><h4>🔮 魔契师</h4>
+<div class="src-inline b14"><div class="lbl">2014 · 契约恩赐</div>3级职业特性——刃之契约、链之契约、书之契约</div>
+<div class="src-inline"><div class="lbl">2024 · 契约恩赐</div>契约恩赐现在是<strong>魔能祈唤选项</strong>（刃、链、书之契约都是可选祈唤）。魔能祈唤 1级起 1→10项</div>
+<p style="margin-top:8px"><strong>2级新增魔力狡黠：</strong>花1分钟恢复一半契约法术位（向上取整），1/长休</p>
+<p style="margin-top:8px"><strong>施法：</strong>已知→准备法术 | <strong>神秘奥秘：</strong>祈唤形式选择，可替换</p>
+</div>
+</div></section><hr>
+
+<section id="s3"><div class="sec-head"><span class="n">3</span><h2>战斗规则</h2></div>
+<h3>3.1 动作重命名与新增</h3>
+<div class="tbl-wrap"><table>
+<tr><th>2024 动作</th><th>2014 对应</th><th>变化</th></tr>
+<tr><td><strong>攻击 Attack</strong></td><td>相同</td><td>武器拔取/收纳<strong>每击一次</strong></td></tr>
+<tr><td><strong>魔法 Magic</strong></td><td>施法 Cast a Spell</td><td>更名+扩展：施法、魔法物品、魔法特性</td></tr>
+<tr><td><strong>影响 Influence</strong></td><td class="td24">新增</td><td>社交互动标准动作</td></tr>
+<tr><td><strong>研究 Study</strong></td><td class="td24">新增</td><td>智力知识回忆标准动作</td></tr>
+<tr><td><strong>操作 Utilize</strong></td><td>使用物件</td><td>更名，机制相同</td></tr>
+<tr><td>其他</td><td>不变</td><td>疾走/撤离/闪避/协助/隐藏/搜索/准备</td></tr>
+</table></div>
+
+<h3 id="s3-2">3.2 武器精通</h3>
+<div class="src-full qnew"><div class="hd">2024 全新系统</div><div class="bd"><p>每把武器都具有自己的精通词条。一个角色必须拥有能够解锁精通词条的特性（例如<strong>武器精通</strong>特性）才能使用这类词条。</p><p class="src">books/2024-core/玩家手册2024/装备/精通词条.md</p></div></div>
+<div class="src-full q14"><div class="hd">2014</div><div class="bd"><p>无对应系统。</p></div></div>
+<div class="mast-grid">
+<div class="mast-item"><strong>🔪 横扫</strong> 近战命中后对相邻触及范围内的另一个生物进行一次攻击。每回合一次，无属性调整值伤害。</div>
+<div class="mast-item"><strong>💢 擦掠</strong> 即使攻击失手，仍造成等于所用属性调整值的伤害。</div>
+<div class="mast-item"><strong>⚡ 迅击</strong> 轻武器附赠攻击成为攻击动作的一部分（不消耗 BA）。每回合限制一次。</div>
+<div class="mast-item"><strong>👊 推离</strong> 命中时，将大型或更小的目标推离至多 10 尺。无豁免。</div>
+<div class="mast-item"><strong>🔻 削弱</strong> 命中时，目标在下回合开始前的下一次攻击具有劣势。</div>
+<div class="mast-item"><strong>🐢 缓速</strong> 命中造成伤害时，目标速度减少 10 尺，持续至下回合开始。</div>
+<div class="mast-item"><strong>💫 失衡</strong> 命中时，目标体质豁免（DC = 8 + 属性调整值 + PB）否则倒地。</div>
+<div class="mast-item"><strong>🎯 侵扰</strong> 命中造成伤害时，下回合结束前对该目标的下一次攻击具有优势。</div>
+</div>
+
+<h3>3.3 擒拿与推撞</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014 · 对抗属性检定</div><div class="bd"><p>进攻方掷力量（运动）vs 目标的力量（运动）或敏捷（特技）。替换攻击动作中的一次攻击。</p><p class="src">books/legacy-core/玩家手册/战斗/发起攻击.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024 · 目标豁免 DC</div><div class="bd"><p>统一为<strong>徒手打击</strong>。目标进行力量或敏捷豁免（DC = 8 + 力量调整值 + PB）。进攻方不再掷骰。擒拿额外赋予对除擒拿者外攻击劣势。</p><p class="src">books/2024-core/玩家手册2024/术语汇编/状态.md</p></div></div>
+</div>
+
+<h3>3.4 双持武器</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>独立"双持武器战斗"规则。两把武器必须轻属性。附赠攻击<strong>不加属性调整值</strong>到伤害（除非为负值）。</p><p class="src">books/legacy-core/玩家手册/战斗/发起攻击.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>轻武器属性本身赋予双持规则。使用<strong>Nick 精通</strong>武器时，额外轻武器攻击成为攻击动作的一部分（解放附赠动作）。</p><p class="src">books/2024-core/玩家手册2024/装备/词条.md + 精通词条.md</p></div></div>
+</div>
+
+<h3 id="s3-5">3.5 突袭——最重要的单一规则变化</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>被突袭时，你在自已的第一个回合中<span class="hl">不能移动或执行任何动作</span>，而且直至该回合结束前都不能执行任何反应。</p><p class="src">books/legacy-core/玩家手册/战斗/战斗流程.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>如果参战者在战斗开始时遭到突袭，该参战者在其<span class="hl">先攻检定上具有劣势</span>。例如若有伏击者对敌人来说处于躲藏中，而这名敌人并未意识到战斗已经开始，那该敌人便遭到突袭。</p><p class="src">books/2024-core/玩家手册2024/进行游戏/战斗流程.md</p></div></div>
+</div>
+
+<h3>3.6 力竭</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>力竭状态分为六个递增的等级。<br>1级：属性检定劣势 | 2级：速度减半 | 3级：攻击和豁免劣势 | 4级：HP上限减半 | 5级：速度降为0 | 6级：死亡</p><p class="src">books/legacy-core/玩家手册/状态.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>每个力竭等级：D20 检定减去力竭等级<span class="hl">2倍</span>的值 + 速度减少力竭等级<span class="hl">5倍</span>尺。6级死亡。长休移除1级。</p><p class="src">books/2024-core/玩家手册2024/术语汇编/状态.md</p></div></div>
+</div>
+
+<h3>3.7 英雄激励 vs 激励</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>DM 根据角色扮演授予。使用时赋予<strong>优势</strong>（一次攻击/豁免/属性检定）。二元状态。可转给其他玩家。</p><p class="src">books/legacy-core/玩家手册/个性与背景/个性与背景.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>赋予<strong>重掷</strong>（看到结果后决定，接受新结果）。可用于<strong>任意掷骰</strong>。二元状态（最多1）。人类每天自动获得。有优势/劣势时只能重掷一个 d20。</p><p class="src">books/2024-core/玩家手册2024/进行游戏/优势_劣势.md</p></div></div>
+</div>
+
+<h3>3.8 药水饮用——附赠动作</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>喝药或者喂人喝药需要<span class="hl">使用一个动作</span>。</p><p class="src">books/legacy-core/玩家手册/装备/冒险用品.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>以一个<span class="hl">附赠动作</span>，你可以喝掉它或将它喂给位于你5尺内的其他生物。</p><p class="src">books/2024-core/玩家手册2024/装备/冒险装备.md</p><p style="margin-top:8px">喝下药水或者将其施用于另一名角色身上都需要一个附赠动作。</p><p class="src">books/2024-core/城主指南2024/7.宝藏/魔法物品/魔法物品的类别.md</p></div></div>
+</div>
+
+<h3>3.9 隐藏</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>隐匿检定对抗敌方被动察觉。无固定 DC。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>隐匿需要<strong>DC 15</strong> 敏捷（隐匿）检定。必须在重度隐蔽、3/4掩护或全掩护后，且不在敌方视线内。成功则获得隐形状态。隐匿结果保留为敌方发现的 DC。</p><p class="src">books/2024-core/玩家手册2024/术语汇编/动作.md</p></div></div>
+</div>
+
+<h3>3.10 其他战斗规则调整</h3>
+<ul><li><strong>借机攻击：</strong>明确允许用徒手打击进行借机攻击。当可见生物使用"它的动作、附赠动作、反应动作或其任意速度"离开触及范围时触发。</li><li><strong>浴血（Bloodied）：</strong>半 HP 时被正式标记（2014 无此正式化概念）。</li><li><strong>骑乘战斗：</strong>移除战斗中"受控 vs 独立"坐骑区分。</li><li><strong>攻击间移动：</strong>明确允许拥有额外攻击时在攻击之间移动。</li></ul>
+</section><hr>
+
+<section id="s4"><div class="sec-head"><span class="n">4</span><h2>法术与施法</h2></div>
+<h3>4.1 施法规则变化</h3>
+<div class="tbl-wrap"><table>
+<tr><th>规则</th><th class="td14">2014</th><th class="td24">2024</th></tr>
+<tr><td><strong>准备系统</strong></td><td class="td14">各职业独立规则</td><td class="td24">统一每职业准备规则表；引入"始终准备法术"；着甲施法需"训练"</td></tr>
+<tr><td><strong>仪式施法</strong></td><td class="td14">法师可从法术书无准备仪式施法</td><td class="td24">"仪式"成为施法时间标签；法师法术书中任意仪式法术均可，无需准备</td></tr>
+<tr><td><strong>每回合法术位</strong></td><td class="td14">附赠动作法术阻止非戏法动作法术</td><td class="td24">明确"每回合只能消费<strong>一个法术位</strong>"</td></tr>
+<tr><td><strong>专注</strong></td><td class="td14">DC = max(10, 一半伤害)，无明确上限</td><td class="td24">DC = max(10, 一半伤害)，<strong>上限 DC 30</strong></td></tr>
+</table></div>
+
+<h3 id="s4-2">4.2 关键法术原文对照</h3>
+<h4>法术反制</h4>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>如果该生物正在施展<span class="hl">三环或更低</span>环阶法术，则其法术失败且不产生任何效应。如果该生物正在施展四环或更高环阶法术，则你以施法属性进行一次属性检定，其检定 DC 等于 10+目标法术的环阶。</p><p class="src">books/legacy-core/玩家手册/魔法/法术详述/3环.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>该生物进行一次<span class="hl">体质豁免</span>。豁免失败则法术消散且毫无效果……如果那道法术是使用法术位施展的，则<span class="hl">法术位并不会被消耗</span>。</p><p class="src">books/2024-core/玩家手册2024/法术详述/3环.md</p></div></div>
+</div>
+<h4>治疗伤口</h4>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>恢复量等于 <span class="hl">1d8</span>+你的施法属性调整值。升环增量 1d8。对亡灵和构装生物无效。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>恢复等同于<span class="hl">2d8</span>+你施法属性调整值点生命值。升环增量 2d8。学派改为防护。移除了无效限制。</p></div></div>
+</div>
+<h4>治愈真言</h4>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>恢复量等于 <span class="hl">1d4</span>+你的施法属性调整值。升环增量 1d4。对构装生物和亡灵无效。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>恢复量等于<span class="hl">2d4</span>+你的施法属性调整值。升环增量 2d4。学派改为防护。移除了无效限制。</p></div></div>
+</div>
+<h4>灵体武器</h4>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>无需专注，持续 1 分钟。附赠动作控制并攻击。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>现在需要<strong>专注</strong>。</p><p class="src">books/2024-core/玩家手册2024/法术详述/2环.md</p></div></div>
+</div>
+<h4>变形术</h4>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>目标 HP 变为野兽 HP。野兽 HP 归零后恢复原形。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>目标获得等于野兽 HP 的<strong>临时生命</strong>；临时生命耗尽时结束。目标进行感知豁免。</p><p class="src">books/2024-core/玩家手册2024/法术详述/4环.md</p></div></div>
+</div>
+<h4>真知术</h4>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>戏法。赋予下次攻击优势。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p><strong>进行武器攻击</strong>，使用<strong>施法属性</strong>进行攻击/伤害，光耀伤害，缩放 1d6/2d6/3d6。</p><p class="src">books/2024-core/玩家手册2024/法术详述/0环.md</p></div></div>
+</div>
+<div class="tbl-wrap"><table>
+<tr><th>法术</th><th class="td14">2014</th><th class="td24">2024</th></tr>
+<tr><td><strong>拟像术</strong></td><td class="td14">可无限链式拟像</td><td class="td24">构装体类型；半HP；无法休息；再次施法摧毁前一个；不可链式</td></tr>
+<tr><td><strong>怪异术</strong></td><td class="td14">随时间造成恐惧</td><td class="td24">首次失败豁免造成<strong>10d10</strong>心灵伤害+恐惧+每回合5d10</td></tr>
+<tr><td><strong>剑刃防护</strong></td><td class="td14">1回合 BPS 抗性</td><td class="td24">专注1分钟，攻击者受到<strong>1d4 攻击掷骰罚值</strong></td></tr>
+<tr><td><strong>神导术</strong></td><td class="td14">任意属性检定 +1d4</td><td class="td24">绑定到<strong>选定技能</strong></td></tr>
+<tr><td><strong>加速术</strong></td><td class="td14">额外动作：一次武器攻击</td><td class="td24">额外动作：攻击/疾走/撤离/隐藏/<strong>操作</strong></td></tr>
+</table></div>
+</section><hr>
+
+<section id="s5"><div class="sec-head"><span class="n">5</span><h2>专长系统</h2></div>
+<h3>5.1 结构变化</h3>
+<div class="tbl-wrap"><table>
+<tr><th>方面</th><th class="td14">2014</th><th class="td24">2024</th></tr>
+<tr><td>规则地位</td><td class="td14"><strong>可选规则</strong></td><td class="td24"><strong>核心规则</strong></td></tr>
+<tr><td>分类</td><td class="td14">无</td><td class="td24">起源（1级）/通用（4级+）/战斗风格/传奇恩惠（19级+）</td></tr>
+<tr><td>属性值</td><td class="td14">部分专长 +1 属性</td><td class="td24"><strong>所有非恩惠专长</strong>都 +1 属性值（上限20）</td></tr>
+<tr><td>获得方式</td><td class="td14">替换 ASI</td><td class="td24">在特定等级获得，不牺牲 ASI</td></tr>
+</table></div>
+<h3>5.2 关键专长原文对照</h3>
+<h4>巨武器大师</h4>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>你在使用具有熟练项的重型武器发动近战攻击前，可以选择让本次攻击检定<span class="hl">承受-5减值</span>。若本次攻击命中，则其伤害掷骰获得<span class="hl">+10加值</span>。</p><p class="src">books/legacy-core/玩家手册/自定义选项/专长.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p><strong>属性值提升：</strong>力量提升1。<br><strong>重武器掌握：</strong>当你用具有重型词条的武器命中了一名生物时，你可以让这把武器对目标额外造成一定的伤害，额外伤害等同于你的<span class="hl">熟练加值</span>。<br><strong>顺势斩：</strong>重击或击杀时，可以用附赠动作用同一把武器再打一次。</p><p class="src">books/2024-core/玩家手册2024/专长/通用专长.md</p></div></div>
+</div>
+<h4>魔法学徒</h4>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>2戏法+1环法术。1环法术一次性使用，长休恢复。不能用法术位施放。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>2戏法+1环法术。该法术<strong>始终准备</strong>，可用<strong>法术位施放</strong>，升级时可替换。每日一次免费施放。可重复选择。</p><p class="src">books/2024-core/玩家手册2024/专长/起源专长.md</p></div></div>
+</div>
+<h3>5.3 起源专长</h3>
+<div class="src-full qnew"><div class="hd">2024 新增分类 · 10 项起源专长</div><div class="bd"><p>警觉、魔法学徒、幸运、乐师、工匠、医疗师、凶蛮打手、多面手、酒馆殴斗者、健壮。每项背景必含一项。</p><p class="src">books/2024-core/玩家手册2024/专长/起源专长.md</p></div></div>
+<h3>5.4 传奇恩惠</h3>
+<div class="src-full qnew"><div class="hd">2024 新增分类 · 12 项传奇恩惠（19级+前提）</div><div class="bd"><p>全部 +1 属性值（上限 30）。关键恩惠：法术召回、不可阻挡攻势、真知视觉、康复恩惠。</p><p class="src">books/2024-core/玩家手册2024/专长/传奇恩惠专长.md</p></div></div>
+</section><hr>
+
+<section id="s6"><div class="sec-head"><span class="n">6</span><h2>状态与条件</h2></div>
+<p>两种版本都有相同的 15 种状态：目盲、魅惑、耳聋、力竭、恐慌、擒拿、失能、隐形、麻痹、石化、中毒、倒地、束缚、震慑、昏迷。</p>
+<h3>擒拿</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>速度 0，无速度加值。无攻击掷骰惩罚。擒拿在擒拿者失能或效果移出触及范围时结束。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>速度 0 + <strong>对除擒拿者外所有攻击劣势</strong>。擒拿者可拖拽/搬运被擒拿者（1尺额外消耗1尺移动力，除非目标是小体型或更小两级）。</p><p class="src">books/2024-core/玩家手册2024/术语汇编/状态.md</p></div></div>
+</div>
+<h3>失能</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>仅阻止动作和反应。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>无法动作/反应 <strong>+ 无法专注（专注被打断）+ 无法说话 + 先攻劣势</strong>。</p><p class="src">books/2024-core/玩家手册2024/术语汇编/状态.md</p></div></div>
+</div>
+<h3>隐形</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>隐形生物只能通过魔法或特殊感官察觉。在隐藏方面，该生物视为<strong>重度遮蔽</strong>。</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>移除"重度遮蔽"语言。替换为：① <strong>先攻优势</strong>（若在隐形状态下投掷先攻）② <strong>隐蔽性</strong>——依赖视觉的效果无法影响你 ③ 攻击互动不变。</p><p class="src">books/2024-core/玩家手册2024/术语汇编/状态.md</p></div></div>
+</div>
+<h3>状态链</h3>
+<div class="src-full q24"><div class="hd">2024</div><div class="bd"><p>2024 中状态明确声明它们引发哪些其他状态——麻痹："你陷入失能"、石化："你陷入失能"、震慑："你陷入失能"、昏迷："你陷入失能和倒地"。</p><p class="src">books/2024-core/玩家手册2024/术语汇编/状态.md</p></div></div>
+</section><hr>
+
+<section id="s7"><div class="sec-head"><span class="n">7</span><h2>怪物与遭遇设计</h2></div>
+<h3>7.1 怪物数据卡新字段</h3>
+<div class="src-full qnew"><div class="hd">2024 怪物图鉴 · 前言</div><div class="bd"><p><strong>先攻条目：</strong>每个怪物数据卡新增先攻调整值和固定先攻值（括号中）。</p><p><strong>体型对应生命骰表：</strong>微型 d4、小型 d6、中型 d8、大型 d10、巨型 d12、超巨型 d20。2014 无此统一表。</p><p><strong>装备条目（Gear）：</strong>怪物携带可被搜刮的装备在数据卡上列表演示。</p><p><strong>NPC 并入主章节：</strong>NPC 不再放在附录中，而是与其他怪物一起出现。</p><p>超过 500 个数据卡。所有 2014 怪物在 2024 中都有对应或同等 CR 替代物。</p><p class="src">books/2024-core/怪物图鉴2025/前言/数据卡的组成部分.md</p></div></div>
+<h3>7.2 遭遇构建——根本性简化</h3>
+<div class="src-group">
+<div class="src-card q14"><div class="hd">2014</div><div class="bd"><p>四个难度类别——简单、普通、困难、致命。使用"遭遇倍数"系统：总怪物 XP 乘以系数（2只×1.5，3-6只×2…15+只×4）。还有"当日冒险"XP 预算表。</p><p class="src">books/legacy-core/城主指南/冒险之主/冒险/创建遭遇.md</p></div></div>
+<div class="src-card q24"><div class="hd">2024</div><div class="bd"><p>三个难度类别——<strong>低、中等、高</strong>。<strong>直接加总怪物 XP</strong>，无需倍数。<strong>移除"当日冒险"预算</strong>。</p><p class="src">books/2024-core/城主指南2024/4.创建冒险/规划遭遇/战斗遭遇.md</p></div></div>
+</div>
+<h4>XP 预算对比（每人）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>等级</th><th class="td24">2024低</th><th class="td14">2014简单</th><th class="td24">2024中</th><th class="td14">2014普通</th><th class="td24">2024高</th><th class="td14">2014致命</th></tr>
+<tr><td>1</td><td class="td24">50</td><td class="td14">25</td><td class="td24">75</td><td class="td14">50</td><td class="td24">100</td><td class="td14">100</td></tr>
+<tr><td>3</td><td class="td24">150</td><td class="td14">75</td><td class="td24">225</td><td class="td14">150</td><td class="td24">400</td><td class="td14">400</td></tr>
+<tr><td>10</td><td class="td24">1,600</td><td class="td14">600</td><td class="td24">2,300</td><td class="td14">1,200</td><td class="td24">3,100</td><td class="td14">2,800</td></tr>
+<tr><td>20</td><td class="td24">6,400</td><td class="td14">2,800</td><td class="td24">13,200</td><td class="td14">5,700</td><td class="td24">22,000</td><td class="td14">12,700</td></tr>
+</table></div>
+<h3>7.3 预设怪物属性</h3>
+<div class="src-full qnew"><div class="hd">2024 新增 · 怪物图鉴</div><div class="bd"><p>熟练加值按 CR 表延伸至 CR 21-30（PB +7 到 +9）。</p><p class="src">books/2024-core/怪物图鉴2025/前言/数据卡的组成部分.md</p></div></div>
+<h3>7.4 战术指导</h3>
+<div class="src-full qnew"><div class="hd">2024 新增 · DMG</div><div class="bd"><p>明确战术指导：尽快使用有限次数高伤害能力；在没有更强能力的回合使用多重攻击；尽可能使用附赠动作、反应和传奇动作。</p></div></div>
+</section><hr>
+
+<section id="s8"><div class="sec-head"><span class="n">8</span><h2>魔法物品与宝藏</h2></div>
+<h3>8.1 制作系统</h3>
+<div class="src-full qnew"><div class="hd">2024 新核心内置 · 制作魔法物品</div><div class="bd"><p><strong>普通：</strong>5天，50gp | <strong>非普通：</strong>10天，200gp | <strong>稀有：</strong>50天，2,000gp | <strong>极稀有：</strong>125天，20,000gp | <strong>传说：</strong>250天，100,000gp</p><p>消耗品（卷轴除外）半价半时。需要奥术熟练+对应工具。2014 依赖珊娜萨的万事指南。</p><p class="src">books/2024-core/城主指南2024/7.宝藏/制作魔法物品.md</p></div></div>
+<div class="src-full q14"><div class="hd">2014</div><div class="bd"><p>无详细制作规则在核心 DMG 中。依赖于扩展书。</p></div></div>
+<h3>8.2 定价</h3>
+<div class="tbl-wrap"><table>
+<tr><th>稀有度</th><th class="td14">2014（范围）</th><th class="td24">2024（固定）</th></tr>
+<tr><td>普通</td><td class="td14">50–100 gp</td><td class="td24">100 gp</td></tr>
+<tr><td>非普通</td><td class="td14">101–500 gp</td><td class="td24">400 gp</td></tr>
+<tr><td>稀有</td><td class="td14">501–5,000 gp</td><td class="td24">4,000 gp</td></tr>
+<tr><td>极稀有</td><td class="td14">5,001–50,000 gp</td><td class="td24">40,000 gp</td></tr>
+<tr><td>传说</td><td class="td14">50,001+ gp</td><td class="td24">200,000 gp</td></tr>
+</table></div>
+<h3>8.3 其他新增</h3>
+<ul><li><strong>魔法物品耐久：</strong>"除药水和卷轴外，大多数魔法物品对所有伤害类型具有抗性。"（2014 无此规则）</li><li><strong>宝藏主题：</strong>奥秘、武备、器具、圣物——怪物有主题偏好，随机魔法物品表按主题组织。</li><li><strong>按等级奖励系统：</strong>1-20 级魔法物品发放追踪系统（共 100 件）。</li></ul>
+</section><hr>
+
+<section id="s9"><div class="sec-head"><span class="n">9</span><h2>对战斗模拟器的影响汇总</h2></div>
+<div class="tbl-wrap"><table>
+<tr><th>规则领域</th><th>变化性质</th><th>对模拟的影响</th></tr>
+<tr><td><strong>突袭</strong></td><td class="td14">失去整轮 → 先攻劣势</td><td>极大降低伏击收益</td></tr>
+<tr><td><strong>武器精通</strong></td><td class="td24">全新系统</td><td>需为每个武器建模 8 种精通属性效果</td></tr>
+<tr><td><strong>擒拿/推撞</strong></td><td class="td14">对抗检定 → 目标豁免</td><td>DC 计算改为固定 DC（8+力量+PB）</td></tr>
+<tr><td><strong>至圣斩</strong></td><td class="td14">法术化，每回合一次</td><td>圣武士爆发伤害降低约 40-50%</td></tr>
+<tr><td><strong>力竭</strong></td><td class="td14">6 级离散 → 线性堆叠</td><td>数学模型更简单：−2/级 d20，−5ft/级速度</td></tr>
+<tr><td><strong>药水</strong></td><td class="td14">动作 → 附赠动作</td><td>动作经济改变</td></tr>
+<tr><td><strong>法术反制</strong></td><td class="td14">自动 → 体质豁免</td><td>不再保证反制 Boss 施法者</td></tr>
+<tr><td><strong>灵体武器</strong></td><td class="td14">需专注</td><td>牧师无法同时灵体武器+祝福术+灵体卫士</td></tr>
+<tr><td><strong>英雄激励</strong></td><td class="td14">优势 → 重掷</td><td>概率模型不同（重掷 vs 优势）</td></tr>
+<tr><td><strong>治疗量</strong></td><td class="td14">1d8/1d4 → 2d8/2d4</td><td>战斗中治疗效率翻倍</td></tr>
+<tr><td><strong>GWM/SS</strong></td><td class="td14">−5/+10 移除</td><td>优化武术 DPR 大幅变化</td></tr>
+<tr><td><strong>双持+Nick</strong></td><td class="td14">BA 解放</td><td>TWF 动作经济改善</td></tr>
+</table></div>
+<h3>数据模型影响</h3>
+<ul><li><strong>物种与属性值解耦：</strong>属性值加值来自背景，物种仅提供特性</li><li><strong>全职业准备法术：</strong>术士、吟游诗人、游侠、魔契师从已知→准备</li><li><strong>子职业统一 3 级：</strong>牧师、术士、魔契师、法师、德鲁伊推迟</li><li><strong>武器精通：</strong>每个武器关联精通属性，职业决定解锁数量</li><li><strong>传奇恩惠：</strong>19 级新增专长类别</li></ul>
+<h3>DPR 关键变化</h3>
+<ol><li><strong>巨武/神射 −5/+10 移除</strong> ——优化武术 DPR 大幅下降</li><li><strong>至圣斩每回合一次</strong> ——圣武士爆发约 −40~50%</li><li><strong>灵体武器需专注</strong> ——牧师不能同时灵体武器+祝福术+灵体卫士</li><li><strong>治疗量翻倍</strong> ——战斗中治疗更有效</li><li><strong>法术反制重制</strong> ——无法保证沉默 Boss</li><li><strong>变形术临时 HP</strong> ——不再是"第二条血条"</li><li><strong>武器精通全线增强</strong> ——附加伤害/控制提高基础 DPR</li><li><strong>武僧骰面升级</strong> ——d4→d6 起步，d10→d12 封顶</li><li><strong>野蛮人残暴打击</strong> ——从暴击依赖变为更可控的伤害</li></ol>
+</section>
+<footer><p>原文摘自 rulebook-clean 规则书 · 玩家手册2024 + 城主指南2024 + 怪物图鉴2025 vs Legacy Core</p><p>D&D 2024 vs 2014 详细对比（附原文）· 2026-06-11</p></footer>
+</div></div></body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D&D 2024 vs 2014 — 简明对比（附原文）</title>
+<style>
+  :root { --bg:#fdfcf9; --card:#fff; --text:#2b2b2b; --muted:#777; --red:#b22222; --blue:#2563eb; --gold:#8b6914; --border:#e5dfd5; --shadow:0 1px 3px rgba(0,0,0,.05); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif; background:var(--bg); color:var(--text); line-height:1.85; font-size:16px; }
+  .hero { background:linear-gradient(170deg,#1a1a2e,#16213e); color:#f5e6c8; text-align:center; padding:60px 0 48px; }
+  .hero h1 { font-size:2em; color:#f5c842; letter-spacing:1px; }
+  .hero p { color:#c8b88a; margin-top:6px; font-size:0.95em; }
+  .wrap { max-width:800px; margin:0 auto; padding:0 20px; }
+  .toc { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:22px 28px; margin:32px 0; }
+  .toc h2 { font-size:1.05em; color:var(--gold); margin-bottom:12px; }
+  .toc ol { columns:2; column-gap:24px; padding-left:20px; font-size:0.9em; }
+  .toc li { margin-bottom:5px; }
+  .toc a { color:var(--blue); text-decoration:none; }
+  .toc a:hover { text-decoration:underline; }
+  .rule-block { margin:48px 0; padding-top:8px; }
+  .rule-block h2 { font-size:1.3em; border-bottom:2px solid var(--red); padding-bottom:8px; margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+  .rule-block h2 .n { background:var(--red); color:#fff; width:30px; height:30px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.85em; flex-shrink:0; }
+  .quote-group { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+  .quote-card { background:var(--card); border-radius:10px; box-shadow:var(--shadow); overflow:hidden; }
+  .quote-card .head { padding:8px 16px; font-size:0.8em; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+  .quote-card.q14 .head { background:#e8f0fe; color:var(--blue); }
+  .quote-card.q24 .head { background:#fde8e8; color:var(--red); }
+  .quote-card .body { padding:16px 20px; font-size:0.9em; }
+  .quote-card .body p { margin-bottom:8px; }
+  .quote-card .body p:last-child { margin-bottom:0; }
+  .hilite { background:linear-gradient(180deg,transparent 60%,#fef3c7 60%); padding:0 2px; }
+  .quote-full { background:var(--card); border-radius:10px; box-shadow:var(--shadow); margin:16px 0; overflow:hidden; }
+  .quote-full .head { padding:8px 16px; font-size:0.8em; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+  .quote-full.q14 .head { background:#e8f0fe; color:var(--blue); }
+  .quote-full.q24 .head { background:#fde8e8; color:var(--red); }
+  .quote-full.qnew .head { background:#d4fceb; color:#0d7c4d; }
+  .quote-full .body { padding:16px 20px; font-size:0.9em; }
+  .diff { background:#fef9f0; border:1px solid #f0d78c; border-radius:8px; padding:10px 18px; margin-top:16px; font-size:0.9em; }
+  .diff::before { content:"📌 变化要点："; font-weight:700; color:var(--gold); }
+  .mast-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin-top:14px; }
+  .mast-item { background:#f6fef9; border:1px solid #c6e8d6; border-radius:8px; padding:10px 14px; font-size:0.88em; }
+  .mast-item strong { color:#0d7c4d; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.72em; font-weight:700; }
+  .tag-new { background:#d4fceb; color:#085c31; }
+  .tag-nerf { background:#fde8e8; color:#9b1c1c; }
+  .tag-buff { background:#d4fceb; color:#085c31; }
+  footer { text-align:center; padding:48px 0 32px; color:var(--muted); font-size:0.85em; border-top:1px solid var(--border); margin-top:48px; }
+  @media(max-width:650px){ .quote-group{grid-template-columns:1fr} .toc ol{columns:1} .hero h1{font-size:1.4em} }
+</style>
+</head>
+<body>
+<div class="hero"><h1>D&D 2024 vs 2014 简明对比</h1><p>十大核心规则变化 · 附规则书原文对照 · <a href="DND-2024-vs-2014-详细对比-附原文.html" style="color:#f5c842;">📄 查看详细版本 →</a></p></div>
+<div class="wrap">
+
+<nav class="toc"><h2>十大变化速查</h2><ol>
+<li><a href="#r1">突袭规则 — 不再失去回合</a></li><li><a href="#r2">武器精通 — 全新系统</a></li><li><a href="#r3">至圣斩 — 变为法术</a></li><li><a href="#r4">属性值来源 — 种族→背景</a></li><li><a href="#r5">力竭 — 统一线性公式</a></li><li><a href="#r6">巨武器大师 — 移除 -5/+10</a></li><li><a href="#r7">法术反制 — 体质豁免</a></li><li><a href="#r8">治疗法术 — 治疗量翻倍</a></li><li><a href="#r9">子职业 — 统一 3 级</a></li><li><a href="#r10">药水 — 附赠动作</a></li>
+</ol></nav>
+
+<div class="rule-block" id="r1"><h2><span class="n">1</span> 突袭规则</h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 玩家手册 · 战斗流程</div><div class="body"><p>被突袭时，你在自已的第一个回合中<span class="hilite">不能移动或执行任何动作</span>，而且直至该回合结束前都不能执行任何反应。</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 玩家手册 · 战斗流程</div><div class="body"><p>如果参战者在战斗开始时遭到突袭，该参战者在其<span class="hilite">先攻检定上具有劣势</span>。</p></div></div>
+</div><div class="diff">2014 被突袭 = 跳过第一回合；2024 被突袭 = 先攻劣势，照常行动。伏击价值大幅下降。</div></div>
+
+<div class="rule-block" id="r2"><h2><span class="n">2</span> 武器精通 <span class="tag tag-new">全新</span></h2>
+<div class="quote-full q14"><div class="head">2014 · 无对应系统</div><div class="body"><p style="color:var(--muted)">2014 版不存在武器精通机制。</p></div></div>
+<div class="quote-full q24" style="margin-top:10px"><div class="head">2024 · 玩家手册 · 精通词条</div><div class="body"><p>每把武器都具有自己的精通词条。一个角色必须拥有能够解锁精通词条的特性（例如<strong>武器精通</strong>特性）才能使用这类词条。</p></div></div>
+<div class="mast-grid">
+<div class="mast-item"><strong>🔪 横扫</strong> 命中后在触及范围内对相邻目标再打一次（每回合一次）</div>
+<div class="mast-item"><strong>💢 擦掠</strong> 即使失手也造成属性调整值伤害</div>
+<div class="mast-item"><strong>⚡ 迅击</strong> 轻武器额外攻击成为攻击动作的一部分，不消耗 BA</div>
+<div class="mast-item"><strong>👊 推离</strong> 命中后将大型或更小目标推离 10 尺，无豁免</div>
+<div class="mast-item"><strong>🔻 削弱</strong> 命中后目标下次攻击劣势</div>
+<div class="mast-item"><strong>🐢 缓速</strong> 命中并造成伤害时目标速度 −10 尺</div>
+<div class="mast-item"><strong>💫 失衡</strong> 命中后体质豁免否则倒地</div>
+<div class="mast-item"><strong>🎯 侵扰</strong> 造成伤害后下次对同目标攻击优势</div>
+</div><div class="diff">2024 新增八种武器精通，通过职业特性解锁。战士最多可掌握 6 项。</div></div>
+
+<div class="rule-block" id="r3"><h2><span class="n">3</span> 至圣斩 <span class="tag tag-nerf">重大变化</span></h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 圣武士 · 职业特性</div><div class="body"><p>第2级起，你使用近战武器攻击命中一个生物时，可以<span class="hilite">消耗一枚法术位</span>，并对目标造成除武器伤害外附加的光耀伤害。</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 法术详述 · 1 环</div><div class="body"><p><strong>至圣斩｜Divine Smite</strong> 一环 塑能（圣武士）<br><strong>施法时间：</strong><span class="hilite">附赠动作</span>，当你使用近战武器或徒手打击命中一个生物后立即执行。被该次攻击检定命中的目标会在此次攻击中额外受到2d8点光耀伤害。</p><p>你始终准备着法术至圣斩。此外，你可以<span class="hilite">不消耗法术位</span>地施展该法术一次，而后你必须完成一次长休才能再次这么做。</p></div></div>
+</div><div class="diff">2014 至圣斩是职业特性，不限次数（只要有法术位）；2024 改为附赠动作法术，每回合最多一次。每日一次免费使用。爆发伤害大幅降低。</div></div>
+
+<div class="rule-block" id="r4"><h2><span class="n">4</span> 属性值来源</h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 玩家手册 · 种族</div><div class="body"><p>每个<span class="hilite">种族</span>都会为角色一项或多项的属性值提供加成。</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 玩家手册 · 起源的构成部分</div><div class="body"><p><strong>背景的特性组成：</strong><span class="hilite">背景</span>列出了角色的三项属性值。将其中一项提升2，另一项提升1；或者将三项都分别增加1。</p><p style="margin-top:8px"><strong>种族的特质组成：</strong>生物类型、体型、速度、特殊特质。（<em>无属性值</em>）</p></div></div>
+</div><div class="diff">2014 种族决定属性加值；2024 种族只给特性，属性加值移到背景。任何物种+任何职业都可行，不再有"最优种族"。</div></div>
+
+<div class="rule-block" id="r5"><h2><span class="n">5</span> 力竭</h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 状态</div><div class="body"><p>力竭状态分为六个递增的等级。<br>1级：属性检定劣势 | 2级：速度减半 | 3级：攻击和豁免劣势 | 4级：HP上限减半 | 5级：速度降为0 | 6级：死亡</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 术语汇编 · 状态</div><div class="body"><p><strong>D20检定影响。</strong>当你进行一次D20检定时，此次检定将减去你力竭等级<span class="hilite">2倍</span>的值。<br><strong>速度降低。</strong>你的速度减少等于你力竭等级<span class="hilite">5倍</span>尺。<br>当你力竭等级累加到6级你将死亡。完成长休来降低1级。</p></div></div>
+</div><div class="diff">2014 每级单独效果需查表；2024 统一公式——每级 −2 D20、−5尺速度。</div></div>
+
+<div class="rule-block" id="r6"><h2><span class="n">6</span> 巨武器大师 <span class="tag tag-nerf">−5/+10 移除</span></h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 专长</div><div class="body"><p>你在使用具有熟练项的重型武器发动近战攻击前，可以选择让本次攻击检定<span class="hilite">承受-5减值</span>。若本次攻击命中，则其伤害掷骰获得<span class="hilite">+10加值</span>。</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 通用专长</div><div class="body"><p><strong>属性值提升。</strong>你的力量提升1。<br><strong>重武器掌握。</strong>当你用具有重型词条的武器命中了一名生物时，你可以让这把武器对目标额外造成一定的伤害，额外伤害等同于你的<span class="hilite">熟练加值</span>。<br><strong>顺势斩。</strong>当你使用近战武器掷出一次重击时，或当你用其将一个生物的生命值降低至0时，你可以立即使用你的附赠动作用同一把武器发动一次攻击。</p></div></div>
+</div><div class="diff">−5/+10 没了。改为稳定附加 PB 伤害 + 半专长 + 重击/击杀 BA 攻击。神射手同样移除 −5/+10。</div></div>
+
+<div class="rule-block" id="r7"><h2><span class="n">7</span> 法术反制 <span class="tag tag-nerf">重大削弱</span></h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 3 环法术</div><div class="body"><p>如果该生物正在施展<span class="hilite">三环或更低</span>环阶法术，则其法术失败且不产生任何效应。如果该生物正在施展四环或更高环阶法术，则你以施法属性进行一次属性检定，其检定 DC 等于 10+目标法术的环阶。</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 3 环法术</div><div class="body"><p>该生物进行一次<span class="hilite">体质豁免</span>。豁免失败则法术消散且毫无效果……如果那道法术是使用法术位施展的，则<span class="hilite">法术位并不会被消耗</span>。</p></div></div>
+</div><div class="diff">2014 自动反制≤3环，高环需施法属性检定；2024 改为目标体质豁免，不消耗法术位。不再能保证沉默 Boss 施法者。</div></div>
+
+<div class="rule-block" id="r8"><h2><span class="n">8</span> 治疗法术 <span class="tag tag-buff">翻倍</span></h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 1 环法术</div><div class="body"><p><strong>疗伤术：</strong>恢复量等于 <span class="hilite">1d8</span>+你的施法属性调整值。升环增量 1d8。对亡灵和构装生物无效。</p><p style="margin-top:8px"><strong>治愈真言：</strong>恢复量等于 <span class="hilite">1d4</span>+你的施法属性调整值。升环增量 1d4。对构装生物和亡灵无效。</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 1 环法术</div><div class="body"><p><strong>疗伤术：</strong>恢复等同于<span class="hilite">2d8</span>+你施法属性调整值点生命值。升环增量 2d8。学派改为防护。</p><p style="margin-top:8px"><strong>治愈真言：</strong>恢复量等于<span class="hilite">2d4</span>+你的施法属性调整值。升环增量 2d4。学派改为防护。</p><p style="margin-top:8px;color:var(--muted)">（均移除对亡灵/构装生物的无效限制）</p></div></div>
+</div><div class="diff">基础治疗量和升环增量全部翻倍。学派从塑能改为防护。战斗中治疗更有价值。</div></div>
+
+<div class="rule-block" id="r9"><h2><span class="n">9</span> 子职业统一 3 级</h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 各职业</div><div class="body"><p>牧师 1 级选领域；术士 1 级选起源；魔契师 1 级选宗主；法师 2 级选学派；德鲁伊 2 级选结社。其他 7 个职业在 3 级选子职业。</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 各职业</div><div class="body"><p><strong>牧师：</strong>3级：牧师子职 — 生命领域、光明领域、诡术领域或战争领域。</p><p><strong>术士：</strong>3级：术士子职 — 畸变术法、时械术法、龙族术法或狂野术法。</p><p><strong>魔契师：</strong>3级：魔契师子职 — 至高妖精宗主、天界宗主、邪魔宗主或旧日支配者宗主。</p><p><strong>法师、德鲁伊：</strong>同样 3 级选子职。</p></div></div>
+</div><div class="diff">5 个职业的子职业选择推迟到 3 级。多职业兼职不再能 1 级获得大量子职特性。</div></div>
+
+<div class="rule-block" id="r10"><h2><span class="n">10</span> 药水 <span class="tag tag-buff">附赠动作</span></h2>
+<div class="quote-group">
+<div class="quote-card q14"><div class="head">2014 · 冒险用品</div><div class="body"><p>喝药或者喂人喝药需要<span class="hilite">使用一个动作</span>。</p></div></div>
+<div class="quote-card q24"><div class="head">2024 · 玩家手册 + 城主指南</div><div class="body"><p>以一个<span class="hilite">附赠动作</span>，你可以喝掉它或将它喂给位于你5尺内的其他生物。（<em>玩家手册·治疗药水</em>）</p><p style="margin-top:8px">喝下药水或者将其施用于另一名角色身上都需要一个<span class="hilite">附赠动作</span>。（<em>城主指南·药水通用规则</em>）</p></div></div>
+</div><div class="diff">2014 药水饮用 = 动作；2024 药水饮用 = 附赠动作。所有药水适用。战斗中喝药不再占用攻击动作。</div></div>
+
+<footer><p>原文摘自 rulebook-clean 规则书 · 玩家手册2024 + 城主指南2024 vs Legacy Core</p><p>D&D 2024 vs 2014 简明对比（附原文）· 2026-06-11</p></footer>
+</div></body></html>
