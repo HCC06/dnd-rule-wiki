@@ -1,0 +1,7 @@
+# Large binary source - not needed after conversion
+*.chm
+# Temporary extraction output
+_extracted_html/
+# Python cache
+__pycache__/
+*.pyc
